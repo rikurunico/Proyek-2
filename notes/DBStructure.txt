@@ -1,0 +1,38 @@
+------- User
+	- usernama
+	- email
+	- password
+
+------- Room
+	- idRoom
+	- room_number
+	
+------- Dormitory
+	- id...
+	- name
+	- address
+	- phone_number
+	- Checkin_date
+	- Checkout_date
+
+------- Parent
+	- idParent
+	- name
+	- phone_number
+
+------- PaymentLog
+	- idPayment 
+	- payment_date (Waktu pembayaran anak kos)
+	- status(Untuk check statusnya transfer atau bayar cash)
+	- payment_month(Total Pembayaran untuk berapa bulan)
+
+------- PriceCost
+	- PriceRoom
+
+------- UserLevel
+	- idLevel
+	- name
+
+------- Status
+	- idStatus
+	- name
