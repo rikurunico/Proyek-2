@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->date('payment_date');
             $table->string('status');
-            $table->status('payment_month');
+            $table->integer('payment_month');
         });
     }
 
