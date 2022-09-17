@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/login', [LoginController::class, "index"])->middleware("guest")->name("login");
+Route::post('/login', [LoginController::class, "store"])->name("login.store");
+Route::get('/logout', [LoginController::class, "logout"])->name("logout");
+
+Route::get('/dashboard', [DashboardController::class, "index"])->name("dashboard.index");
+
+
