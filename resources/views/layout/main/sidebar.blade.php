@@ -73,7 +73,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Tabel</h6>
                 <a class="collapse-item" href="{{ url("") }}">Data Kamar</a>
-                <a class="collapse-item" href="{{ url("") }}">Data Penghuni</a>
+                <a class="collapse-item" href="{{ route("dormitory.index") }}">Data Penghuni</a>
                 <a class="collapse-item" href="{{ url("") }}">Data Transaksi</a>
                 <a class="collapse-item" href="{{ url("") }}">Data User</a>
             </div>

@@ -17,9 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->string('phone',13);
-            $table->date('checkIn');
-            $table->date('checkOut')->nullable();
+            $table->string('phone_number', 13);
+            // $table->date('checkin_date')->nullable();
+            // $table->date('checkout_date')->nullable();
+            // $table->unsignedBigInteger('fk_id_room');
+            // $table->unsignedBigInteger('fk_id_parent');
+            // $table->foreign("fk_id_room")->references("id")->on("rooms")->onUpdate("cascade")->onDelete("cascade");
+            // $table->foreign("fk_id_parent")->references("id")->on("parent_dormitories")->onUpdate("cascade")->onDelete("cascade");
             $table->timestamps();
         });
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DormitoryController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,7 @@ Route::post('/login', [LoginController::class, "store"])->name("login.store");
 Route::get('/logout', [LoginController::class, "logout"])->name("logout");
 
 Route::get('/dashboard', [DashboardController::class, "index"])->name("dashboard.index");
+
+Route::resource('/dashboard/dormitory', DormitoryController::class);
 
 
