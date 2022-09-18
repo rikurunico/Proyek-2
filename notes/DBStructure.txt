@@ -1,19 +1,22 @@
 ------- User
+	- id
 	- usernama
 	- email
 	- password
 
 ------- Room
-	- idRoom
+	- id
 	- room_number
 	
 ------- Dormitory
-	- id...
+	- id
 	- name
 	- address
 	- phone_number
-	- Checkin_date
-	- Checkout_date
+	- checkin_date
+	- checkout_date
+	- fk_id_room
+	- fk_id_parent
 
 ------- Parent
 	- idParent
@@ -21,7 +24,7 @@
 	- phone_number
 
 ------- PaymentLog
-	- idPayment 
+	- id
 	- payment_date (Waktu pembayaran anak kos)
 	- status(Untuk check statusnya transfer atau bayar cash)
 	- payment_month(Total Pembayaran untuk berapa bulan)
@@ -30,9 +33,9 @@
 	- PriceRoom
 
 ------- UserLevel
-	- idLevel
+	- id
 	- name
 
 ------- Status
-	- idStatus
+	- id
 	- name

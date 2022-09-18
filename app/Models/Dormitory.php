@@ -12,7 +12,7 @@ class Dormitory extends Model
     protected $fillable = [
         'name',
         'address',
-        'phone',
+        'phone_number',
     ];
 
     protected $table = 'dormitories';

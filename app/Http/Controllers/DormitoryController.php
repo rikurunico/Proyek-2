@@ -12,9 +12,31 @@ class DormitoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public const DORMITORY_ROUTE = [
+        "index" => "dormitory.index",
+        "store" => "dormitory.store",
+        "create" => "dormitory.create",
+        "show" => "dormitory.show",
+        "edit" => "dormitory.edit",
+        "update" => "dormitory.update",
+        "delete" => "dormitory.destroy",
+    ];
+
+    public const DORMITORY_VIEW = [
+        "index" => "dashboard.dormitory.index",
+        "create" => "dashboard.dormitory.create",
+        "detail" => "dashboard.dormitory.detail",
+        "edit" => "dashboard.dormitory.edit",
+    ];
+    
     public function index()
     {
-        //
+        return view(DormitoryController::DORMITORY_VIEW["index"], [
+            'title' => 'Data Penghuni',
+            'dormitories' => Dormitory::orderBy("name")->paginate(10),
+            'dormitory_route' => DormitoryController::DORMITORY_ROUTE
+        ]);
     }
 
     /**
@@ -25,8 +47,9 @@ class DormitoryController extends Controller
     public function create()
     {
         //
-        return view('dormitory.create', [
-            'title' => 'Create Dormitory',
+        return view(DormitoryController::DORMITORY_VIEW["create"], [
+            'title' => 'Tambah Penghuni',
+            'dormitory_route' => DormitoryController::DORMITORY_ROUTE
         ]);
     }
 
@@ -38,14 +61,18 @@ class DormitoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        
+        $rulesData = [
             'name' => 'required',
             'address' => 'required',
-            'phone' => 'required',
-        ]);
-
-        Dormitory::create($request->all());
-        return redirect()->route('dormitory.index')->with('success', 'Dormitory created successfully');
+            'phone_number' => 'required|unique:dormitories',
+        ];
+        
+        $validatedData = $request->validate($rulesData);
+        
+        Dormitory::create($validatedData);
+        
+        return redirect()->route(DormitoryController::DORMITORY_ROUTE["index"])->with('success', 'Data Penghuni berhasil ditambahkan');
     }
 
     /**
@@ -56,10 +83,10 @@ class DormitoryController extends Controller
      */
     public function show(Dormitory $dormitory)
     {
-        $dormitoryData = Dormitory::all();
-        return view('dormitory.index', [
-            'title' => 'Dormitory',
-            'dormitory' => $dormitoryData,
+        return view(DormitoryController::DORMITORY_VIEW["detail"], [
+            'title' => "Detail Penghuni $dormitory->name",
+            'dormitory' => $dormitory,
+            'dormitory_route' => DormitoryController::DORMITORY_ROUTE
         ]);
 
     }
@@ -72,11 +99,10 @@ class DormitoryController extends Controller
      */
     public function edit(Dormitory $dormitory)
     {
-        //
-        $dormitoryData = Dormitory::find($dormitory->id);
-        return view('dormitory.edit', [
-            'title' => 'Edit Dormitory',
-            'dormitory' => $dormitoryData,
+        return view(DormitoryController::DORMITORY_VIEW["edit"], [
+            'title' => 'Edit Data Penghuni',
+            'dormitory' => $dormitory,
+            'dormitory_route' => DormitoryController::DORMITORY_ROUTE
         ]);
     }
 
@@ -89,15 +115,16 @@ class DormitoryController extends Controller
      */
     public function update(Request $request, Dormitory $dormitory)
     {
-        //
-        $this->validate($request, [
+        $rulesData = [
             'name' => 'required',
             'address' => 'required',
-            'phone' => 'required',
-        ]);
+            'phone_number' => 'required|unique:dormitories,phone_number,'.$dormitory->id ,
+        ];
 
-        Dormitory::find($dormitory->id)->update($request->all());
-        return redirect()->route('dormitory.index')->with('success', 'Dormitory updated successfully');
+        $validatedData = $request->validate($rulesData);
+
+        Dormitory::where("id", $dormitory->id)->update($validatedData);
+        return redirect()->route(DormitoryController::DORMITORY_ROUTE["index"])->with('success', 'Data penghuni berhasil diedit');
     }
 
     /**
@@ -108,8 +135,7 @@ class DormitoryController extends Controller
      */
     public function destroy(Dormitory $dormitory)
     {
-        //
         Dormitory::find($dormitory->id)->delete();
-        return redirect()->route('dormitory.index')->with('success', 'Dormitory deleted successfully');
+        return redirect()->route(DormitoryController::DORMITORY_ROUTE["index"])->with('success', 'Data Penghuni berhasil dihapus');
     }
 }
