@@ -63,9 +63,9 @@ class DormitoryController extends Controller
     {
         
         $rulesData = [
-            'name' => 'required',
+            'name' => 'required|unique:dormitories',
             'address' => 'required',
-            'phone_number' => 'required|unique:dormitories',
+            'phone_number' => 'required|unique:dormitories|numeric|digits_between:11,13',
         ];
         
         $validatedData = $request->validate($rulesData);
@@ -116,9 +116,9 @@ class DormitoryController extends Controller
     public function update(Request $request, Dormitory $dormitory)
     {
         $rulesData = [
-            'name' => 'required',
+            'name' => 'required|unique:dormitories,name,'.$dormitory->id,
             'address' => 'required',
-            'phone_number' => 'required|unique:dormitories,phone_number,'.$dormitory->id ,
+            'phone_number' => 'required|numeric|digits_between:11,13|unique:dormitories,phone_number,'.$dormitory->id ,
         ];
 
         $validatedData = $request->validate($rulesData);
