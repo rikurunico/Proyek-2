@@ -55,7 +55,7 @@ class LoginTest extends TestCase
 
     public function test_login_account_found()
     {
-        //CREATE ACCOUNT FOR TESTING
+        
         $user = User::factory()->create([
             'username' => 'test',
             'password' => bcrypt('test'),
