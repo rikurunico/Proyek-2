@@ -72,10 +72,10 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Tabel</h6>
-                <a class="collapse-item" href="{{ url("") }}">Data Kamar</a>
+                <a class="collapse-item" href="{{ route("rooms.index") }}">Data Kamar</a>
                 <a class="collapse-item" href="{{ route("dormitory.index") }}">Data Penghuni</a>
-                <a class="collapse-item" href="{{ url("") }}">Data Transaksi</a>
-                <a class="collapse-item" href="{{ url("") }}">Data User</a>
+                <a class="collapse-item" href="{{ route("transactions.index") }}">Data Transaksi</a>
+                <a class="collapse-item" href="{{ route("users.index") }}">Data User</a>
             </div>
         </div>
     </li>

@@ -19,7 +19,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="address" class="form-label">Address</label>
-				<input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" value="{{ old("address") }}" required autofocus>
+				<input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" value="{{ old("address") }}" required>
 				@error('address')
 					<div class="invalid-feedback">
 						{{ $message }}
@@ -28,7 +28,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="phone_number" class="form-label">Nomer Telepon</label>
-				<input type="text" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" value="{{ old("phone_number") }}" required autofocus>
+				<input type="text" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" value="{{ old("phone_number") }}" required>
 				@error('phone_number')
 					<div class="invalid-feedback">
 						{{ $message }}

@@ -7,6 +7,23 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
+    public const ROOM_ROUTE = [
+        "index" => "rooms.index",
+        "store" => "rooms.store",
+        "create" => "rooms.create",
+        "show" => "rooms.show",
+        "edit" => "rooms.edit",
+        "update" => "rooms.update",
+        "delete" => "rooms.destroy",
+    ];
+
+    public const ROOM_VIEW = [
+        "index" => "dashboard.room.index",
+        "create" => "dashboard.room.create",
+        "detail" => "dashboard.room.detail",
+        "edit" => "dashboard.room.edit",
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -14,11 +31,10 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
-        $roomData = Room::all();
-        return view('room.index', [
+        return view(RoomController::ROOM_VIEW["index"], [
             'title' => 'Room',
-            'roomData' => $roomData,
+            'rooms' => Room::orderBy("name")->paginate(10),
+            'rooms_route' => RoomController::ROOM_ROUTE
         ]);
     }
 
@@ -30,10 +46,9 @@ class RoomController extends Controller
     public function create()
     {
         //
-        $roomData = Room::all();
-        return view('room.create', [
-            'title' => 'Create Room',
-            'roomData' => $roomData,
+        return view(RoomController::ROOM_VIEW["create"], [
+            'title' => 'Tambah Kamar',
+            'rooms_route' => RoomController::ROOM_ROUTE
         ]);
     }
 
@@ -45,15 +60,17 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $this->validate($request, [
-            'room_number' => 'required|unique:rooms',
-            'preview_image' => 'required',
-        ]);
+        $rulesData = [
+            'name' => 'required|unique:rooms',
+            'room_number' => 'required|integer|min:0|unique:rooms',
+            // 'preview_image' => 'required|image|max:2048',
+        ];
 
-        Room::create($request->all());
+        $validatedData = $request->validate($rulesData);
+        
+        Room::create($validatedData);
 
-        return redirect()->route('room.index')->with('success', 'Room created successfully');
+        return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil ditambahkan');
     }
 
     /**
@@ -64,13 +81,11 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
-        $roomData = Room::find($room->id);
-        return view('room.show', [
-            'title' => 'Show Room',
-            'roomData' => $roomData,
+        return view(RoomController::ROOM_VIEW["detail"], [
+            'title' => "Detail Kamar $room->name",
+            'room' => $room,
+            'rooms_route' => RoomController::ROOM_ROUTE
         ]);
-
     }
 
     /**
@@ -81,11 +96,10 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        //
-        $roomData = Room::find($room->id);
-        return view('room.edit', [
-            'title' => 'Edit Room',
-            'roomData' => $roomData,
+        return view(RoomController::ROOM_VIEW["edit"], [
+            'title' => "Edit Kamar $room->name",
+            'room' => $room,
+            'rooms_route' => RoomController::ROOM_ROUTE
         ]);
     }
 
@@ -98,15 +112,16 @@ class RoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
-        //
-        $this->validate($request, [
-            'room_number' => 'required|string|unique:rooms'.$room->id,
-            'preview_image' => 'required',
-        ]);
+        $rulesData = [
+            'name' => 'required|unique:rooms,name,' . $room->id,
+            'room_number' => 'required|integer|min:0|unique:rooms,room_number,' . $room->id,
+            'preview_image' => 'required|image|max:2048',
+        ];
 
-        Rooms::find($room->id)->update($request->all());
+        $validatedData = $request->validate($rulesData);
 
-        return redirect()->route('room.index')->with('success', 'Room updated successfully');
+        Room::where("id", $room->id)->update($validatedData);
+        return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil diedit');
     }
 
     /**
@@ -118,7 +133,7 @@ class RoomController extends Controller
     public function destroy(Room $room)
     {
         //
-        $roomData = Room::find($room->id)->delete();
-        return redirect()->route('room.index')->with('success', 'Room deleted successfully');
+        Room::find($room->id)->delete();
+        return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil dihapus');
     }
 }

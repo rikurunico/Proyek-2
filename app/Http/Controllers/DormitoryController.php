@@ -124,7 +124,7 @@ class DormitoryController extends Controller
         $validatedData = $request->validate($rulesData);
 
         Dormitory::where("id", $dormitory->id)->update($validatedData);
-        return redirect()->route(DormitoryController::DORMITORY_ROUTE["index"])->with('success', 'Data penghuni berhasil diedit');
+        return redirect()->route(DormitoryController::DORMITORY_ROUTE["index"])->with('success', 'Data Penghuni berhasil diedit');
     }
 
     /**
