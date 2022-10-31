@@ -45,7 +45,7 @@ class DormitoryTest extends TestCase
             'address' => 'test data adress',
             'phone_number' => '081234567890',
         ]);
--
+        
         $response = $this->get(DormitoryTest::URL_TEST);
         $response->assertSeeText('dahyun nico');
         $response->assertSeeText('test data adress');
