@@ -27,7 +27,7 @@
                 <p class="text-gray-500 mb-0">No route in <em>web.php</em> for this url</p>
                 <a href="{{ url("") }}">&larr; Back to Dashboard</a>
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; AFH IYH 2022</span>
+                    <span>Copyright &copy; Bengak Kos 2022</span>
                 </div>
             </div>
         </div>
