@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dormitory;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
@@ -45,10 +46,12 @@ class RoomController extends Controller
      */
     public function create()
     {
+        $dormitories = Dormitory::all();
         //
         return view(RoomController::ROOM_VIEW["create"], [
             'title' => 'Tambah Kamar',
-            'rooms_route' => RoomController::ROOM_ROUTE
+            'rooms_route' => RoomController::ROOM_ROUTE,
+            'dormitories' => $dormitories
         ]);
     }
 
@@ -60,6 +63,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+
         $rulesData = [
             'name' => 'required|unique:rooms',
             'room_number' => 'required|integer|min:0|unique:rooms',
@@ -67,7 +71,7 @@ class RoomController extends Controller
         ];
 
         $validatedData = $request->validate($rulesData);
-        
+
         Room::create($validatedData);
 
         return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil ditambahkan');

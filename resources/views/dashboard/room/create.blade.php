@@ -10,7 +10,12 @@
 			@csrf
 			<div class="mb-3">
 				<label for="name" class="form-label">Nama Kamar</label>
-				<input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old("name") }}" required autofocus>
+				<select name="name" class="form-select @error('name') is-invalid @enderror" id="name" required autofocus>
+					<option value="">Pilih Penghuni Kamar</option>
+					@foreach ($dormitories as $dormitory)
+						<option value="{{ $dormitory->name }}">{{ $dormitory->name }}</option>
+					@endforeach
+				</select>
 				@error('name')
 					<div class="invalid-feedback">
 						{{ $message }}
