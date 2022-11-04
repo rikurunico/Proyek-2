@@ -69,7 +69,7 @@
                                 <form action="{{ route($dormitory_route["delete"], $dormitory->id) }}" class="d-inline" method="post">
                                     @csrf
                                     @method("delete")
-                                    <button onclick="return confirm('Konfirmasi')" class="btn btn-danger">Hapus</button>
+                                    <button onclick="return confirm('Konfirmasi Penghapusanx1')" class="btn btn-danger" >Hapus</button>
                                 </form>
                             </td>
                         </tr>
