@@ -21,7 +21,7 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://picsum.photos/id/200/1920/1080" class="d-block w-100" alt="...">
+                        <img src="{{ $room->roomimages->image }}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
                         <img src="https://picsum.photos/id/201/1920/1080" class="d-block w-100" alt="...">

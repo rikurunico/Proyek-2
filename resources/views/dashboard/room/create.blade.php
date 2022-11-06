@@ -25,7 +25,7 @@
 				@endif
 				@error('fk_id_dormitory')
 					<div class="invalid-feedback">
-						{{ $message }}
+						{!! $message !!}
 					</div>
 				@enderror
 			</div>
@@ -34,7 +34,7 @@
 				<input type="number" name="room_number" class="form-control @error('room_number') is-invalid @enderror" id="room_number" value="{{ old("room_number") }}" required>
 				@error('room_number')
 					<div class="invalid-feedback">
-						{{ $message }}
+						{!! $message !!}
 					</div>
 				@enderror
 			</div>

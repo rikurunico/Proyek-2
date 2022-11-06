@@ -21,6 +21,10 @@ class DormitoryController extends Controller
         "edit" => "dormitory.edit",
         "update" => "dormitory.update",
         "delete" => "dormitory.destroy",
+        "trashIndex" => "dormitory.trash.index",
+        "trashDetail" => "dormitory.trash.detail",
+        "trashRestore" => "dormitory.trash.restore",
+        "trashDelete" => "dormitory.trash.delete"
     ];
 
     public const DORMITORY_VIEW = [
@@ -28,6 +32,8 @@ class DormitoryController extends Controller
         "create" => "dashboard.dormitory.create",
         "detail" => "dashboard.dormitory.detail",
         "edit" => "dashboard.dormitory.edit",
+        "trashIndex" => "dashboard.dormitory.trashIndex",
+        "trashDetail" => "dashboard.dormitory.trashDetail",
     ];
     
     public function index()
@@ -138,4 +144,49 @@ class DormitoryController extends Controller
         Dormitory::find($dormitory->id)->delete();
         return redirect()->route(DormitoryController::DORMITORY_ROUTE["index"])->with('success', 'Data Penghuni berhasil dihapus');
     }
+
+    public function trashIndex()
+    {
+        return view(DormitoryController::DORMITORY_VIEW["trashIndex"], [
+            'title' => 'Data Sampah Penghuni',
+            'dormitories' => Dormitory::onlyTrashed()->orderBy("name")->paginate(10),
+            'dormitory_route' => DormitoryController::DORMITORY_ROUTE
+        ]);
+    }
+
+    public function trashShow($id)
+    {
+        $dormitory = Dormitory::withTrashed()->findOrFail($id);
+        if($dormitory->trashed()){
+            return view(DormitoryController::DORMITORY_VIEW["trashDetail"], [
+                'title' => "Detail Penghuni $dormitory->name",
+                'dormitory' => $dormitory,
+                'dormitory_route' => DormitoryController::DORMITORY_ROUTE
+            ]);
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function trashRestore($id)
+    {
+        $dormitory = Dormitory::withTrashed()->findOrFail($id);
+        if($dormitory->trashed()){
+            $dormitory->restore();
+            return redirect()->route(DormitoryController::DORMITORY_ROUTE["trashIndex"])->with('success', 'Data berhasil di restore. Lihat data <a href="' . route(DormitoryController::DORMITORY_ROUTE["index"]) . '">disini</a>');
+        } else {
+            return redirect()->route(DormitoryController::DORMITORY_ROUTE["trashIndex"])->with('success', 'Data tidak ada di sampah');
+        }
+    }
+
+    public function trashDelete($id)
+    {
+        $dormitory = Dormitory::withTrashed()->findOrFail($id);
+        if($dormitory->trashed()){
+            $dormitory->forceDelete();
+            return redirect()->route(DormitoryController::DORMITORY_ROUTE["trashIndex"])->with('success', 'Data berhasil di hapus secara permanent');
+        } else {
+            return redirect()->route(DormitoryController::DORMITORY_ROUTE["trashIndex"])->with('success', 'Data tidak ada di sampah');
+        }
+    } 
 }

@@ -6,6 +6,7 @@ use App\Models\Dormitory;
 use App\Models\Room;
 use App\Models\RoomImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class RoomController extends Controller
@@ -18,6 +19,10 @@ class RoomController extends Controller
         "edit" => "rooms.edit",
         "update" => "rooms.update",
         "delete" => "rooms.destroy",
+        "trashIndex" => "rooms.trash.index",
+        "trashDetail" => "rooms.trash.detail",
+        "trashRestore" => "rooms.trash.restore",
+        "trashDelete" => "rooms.trash.delete"
     ];
 
     public const ROOM_VIEW = [
@@ -25,6 +30,8 @@ class RoomController extends Controller
         "create" => "dashboard.room.create",
         "detail" => "dashboard.room.detail",
         "edit" => "dashboard.room.edit",
+        "trashIndex" => "dashboard.room.trashIndex",
+        "trashDetail" => "dashboard.room.trashDetail",
     ];
 
     /**
@@ -68,39 +75,48 @@ class RoomController extends Controller
     {
 
         $rulesData = [
-
-            'room_number' => 'required'
-
-            // //create rule override softDelete data
-            // 'room_number' => [
-            //     'required',
-            //     'string',
-            //     'max:255',
-            //     Rule::unique('rooms')->where(function ($query) {
-            //         return $query->where('deleted_at', null);
-            //     }),
-            // ],
-            // 'fk_id_dormitory' => [
-            // ]
+            'room_number' => 'required|integer|min:0',
+            'fk_id_dormitory' => 'required|unique:rooms'
         ];
 
-        $validatedData = $request->validate($rulesData);
+        $validator = Validator::make($request->all(), $rulesData);
+
+        $validatedData = $validator->validated();
+
+        $unique_room_number = Room::with(["dormitory"])->where("room_number", $request->room_number)->first();
+        if ($unique_room_number) {
+            $validator->errors()->add(
+                'room_number', "The room_number has already been taken."
+            );
+            return redirect(route(RoomController::ROOM_ROUTE["create"]))->withErrors($validator)->withInput();
+        } else {
+            $unique_room_number = Room::withTrashed()->where("room_number", $request->room_number)->first();
+            if ($unique_room_number) {
+                $validator->errors()->add(
+                    'room_number', "The room_number has in trash. To use this room_number please restore the data. Click <a href='" . route(RoomController::ROOM_ROUTE["trashDetail"], $unique_room_number->id) . "'>here to restore</a>"
+                );
+                return redirect(route(RoomController::ROOM_ROUTE["create"]))->withErrors($validator)->withInput();
+            } 
+        }
 
         $room = Room::create($validatedData);
 
-        // $rulesDataImage = [
-        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ];
+        $rulesDataImage = [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];
 
-        // $validatedDataImage = $request->validate($rulesDataImage);
-        // $validatedDataImage['fk_id_room'] = $room->id;
+        $validatedDataImage = $request->validate($rulesDataImage);
 
-        // $image = $request->file('image');
-        // $imageName = time() . '.' . $image->extension();
-        // $image->move(public_path('images/rooms'), $imageName);
-        // $image->store('public/images/rooms');
+        $validatedData["fk_id_room"] = $room->id;
 
-        // RoomImage::create($validatedDataImage);
+        if ($request->file("image")) {
+            $pathFile = $request->file("image")->store("room-images", "public");
+            // $parseUrl = explode("/", $pathFile);
+            // unset($parseUrl[0]);
+            // $validatedDataImage["image"] = implode("/", $parseUrl);
+        }
+
+        RoomImage::create($validatedDataImage);
 
         return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil ditambahkan');
     }
@@ -172,4 +188,50 @@ class RoomController extends Controller
         Room::find($room->id)->delete();
         return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil dihapus');
     }
+
+
+    public function trashIndex()
+    {
+        return view(RoomController::ROOM_VIEW["trashIndex"], [
+            'title' => 'Data Sampah Kamar',
+            'rooms' => Room::onlyTrashed()->orderByRaw("CAST(room_number AS UNSIGNED) ASC")->paginate(10),
+            'rooms_route' => RoomController::ROOM_ROUTE
+        ]);
+    }
+
+    public function trashShow($id)
+    {
+        $room = Room::withTrashed()->findOrFail($id);
+        if($room->trashed()){
+            return view(RoomController::ROOM_VIEW["trashDetail"], [
+                'title' => "Detail Kamar $room->room_number",
+                'room' => $room,
+                'rooms_route' => RoomController::ROOM_ROUTE
+            ]);
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function trashRestore($id)
+    {
+        $room = Room::withTrashed()->findOrFail($id);
+        if($room->trashed()){
+            $room->restore();
+            return redirect()->route(RoomController::ROOM_ROUTE["trashIndex"])->with('success', 'Data berhasil di restore. Lihat data <a href="' . route(RoomController::ROOM_ROUTE["index"]) . '">disini</a>');
+        } else {
+            return redirect()->route(RoomController::ROOM_ROUTE["trashIndex"])->with('success', 'Data tidak ada di sampah');
+        }
+    }
+
+    public function trashDelete($id)
+    {
+        $room = Room::withTrashed()->findOrFail($id);
+        if($room->trashed()){
+            $room->forceDelete();
+            return redirect()->route(RoomController::ROOM_ROUTE["trashIndex"])->with('success', 'Data berhasil di hapus secara permanent');
+        } else {
+            return redirect()->route(RoomController::ROOM_ROUTE["trashIndex"])->with('success', 'Data tidak ada di sampah');
+        }
+    } 
 }

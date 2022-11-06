@@ -62,16 +62,16 @@
         Data
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Table -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url("table") }}" data-toggle="collapse" data-target="#collapsePages"
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <em class="fas fa-fw fa-table"></em>
-            <span>Table</span>
+            <span>Tabel Data</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Data Tabel</h6>
+                <h6 class="collapse-header">List Tabel Data</h6>
                 <a class="collapse-item" href="{{ route("rooms.index") }}">Data Kamar</a>
                 <a class="collapse-item" href="{{ route("dormitory.index") }}">Data Penghuni</a>
                 <a class="collapse-item" href="{{ route("transactions.index") }}">Data Transaksi</a>
@@ -79,12 +79,27 @@
             </div>
         </div>
     </li>
-    {{-- <li class="nav-item">
-        <a class="nav-link" href="{{ url("table") }}">
+    <!-- Nav Item - Trash Data -->
+    <div class="sidebar-heading">
+        Sampah
+    </div>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePagesTrash"
+            aria-expanded="true" aria-controls="collapsePagesTrash">
             <em class="fas fa-fw fa-table"></em>
-            <span>Tables</span>
+            <span>Tabel Sampah</span>
         </a>
-    </li> --}}
+        <div id="collapsePagesTrash" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">List Tabel Sampah</h6>
+                <a class="collapse-item" href="{{ route("rooms.trash.index") }}">Data Kamar</a>
+                <a class="collapse-item" href="{{ route("dormitory.trash.index") }}">Data Penghuni</a>
+                <a class="collapse-item" href="{{ route("transactions.trash.index") }}">Data Transaksi</a>
+                <a class="collapse-item" href="{{ route("users.trash.index") }}">Data User</a>
+            </div>
+        </div>
+    </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

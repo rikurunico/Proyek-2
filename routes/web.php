@@ -33,4 +33,26 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/dashboard/dormitory', DormitoryController::class);
     Route::resource('/dashboard/transactions', PaymentLogController::class);
     Route::resource('/dashboard/users', UserController::class);
+
+    // --Trash Data--
+    // Dashboard Data
+    Route::get('/dashboard/trash/rooms', [RoomController::class, "trashIndex"])->name("rooms.trash.index");
+    Route::get('/dashboard/trash/dormitory', [DormitoryController::class, "trashIndex"])->name("dormitory.trash.index");
+    Route::get('/dashboard/trash/transactions', [PaymentLogController::class, "trashIndex"])->name("transactions.trash.index");
+    Route::get('/dashboard/trash/users', [UserController::class, "trashIndex"])->name("users.trash.index");
+    // Detail Data
+    Route::get('/dashboard/trash/rooms/{id}', [RoomController::class, "trashShow"])->name("rooms.trash.detail");
+    Route::get('/dashboard/trash/dormitory/{id}', [DormitoryController::class, "trashShow"])->name("dormitory.trash.detail");
+    Route::get('/dashboard/trash/transactions/{id}', [PaymentLogController::class, "trashShow"])->name("transactions.trash.detail");
+    Route::get('/dashboard/trash/users/{id}', [UserController::class, "trashShow"])->name("users.trash.detail");
+    // Restore Data
+    Route::get('/dashboard/trash/rooms/{id}/restore', [RoomController::class, "trashRestore"])->name("rooms.trash.restore");
+    Route::get('/dashboard/trash/dormitory/{id}/restore', [DormitoryController::class, "trashRestore"])->name("dormitory.trash.restore");
+    Route::get('/dashboard/trash/transactions/{id}/restore', [PaymentLogController::class, "trashRestore"])->name("transactions.trash.restore");
+    Route::get('/dashboard/trash/users/{id}/restore', [UserController::class, "trashRestore"])->name("users.trash.restore");
+    // Delete Permanent Data
+    Route::delete('/dashboard/trash/rooms/{id}', [RoomController::class, "trashDelete"])->name("rooms.trash.delete");
+    Route::delete('/dashboard/trash/dormitory/{id}', [DormitoryController::class, "trashDelete"])->name("dormitory.trash.delete");
+    Route::delete('/dashboard/trash/transactions/{id}', [PaymentLogController::class, "trashDelete"])->name("transactions.trash.delete");
+    Route::delete('/dashboard/trash/users/{id}', [UserController::class, "trashDelete"])->name("users.trash.delete");
 });
