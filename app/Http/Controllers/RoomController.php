@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Dormitory;
 use App\Models\Room;
+use App\Models\RoomImage;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RoomController extends Controller
 {
@@ -34,7 +36,7 @@ class RoomController extends Controller
     {
         return view(RoomController::ROOM_VIEW["index"], [
             'title' => 'Room',
-            'rooms' => Room::with(["dormitory"])->orderBy("room_number")->paginate(10),
+            'rooms' => Room::with(["dormitory"])->orderByRaw("CAST(room_number AS UNSIGNED) ASC")->paginate(10),
             'rooms_route' => RoomController::ROOM_ROUTE
         ]);
     }
@@ -51,6 +53,7 @@ class RoomController extends Controller
         return view(RoomController::ROOM_VIEW["create"], [
             'title' => 'Tambah Kamar',
             'rooms_route' => RoomController::ROOM_ROUTE,
+            'dormitories_route' => DormitoryController::DORMITORY_ROUTE,
             'dormitories' => $dormitories
         ]);
     }
@@ -65,13 +68,39 @@ class RoomController extends Controller
     {
 
         $rulesData = [
-            'room_number' => 'required|integer|min:0|unique:rooms',
-            // 'preview_image' => 'required|image|max:2048',
+
+            'room_number' => 'required'
+
+            // //create rule override softDelete data
+            // 'room_number' => [
+            //     'required',
+            //     'string',
+            //     'max:255',
+            //     Rule::unique('rooms')->where(function ($query) {
+            //         return $query->where('deleted_at', null);
+            //     }),
+            // ],
+            // 'fk_id_dormitory' => [
+            // ]
         ];
 
         $validatedData = $request->validate($rulesData);
 
-        Room::create($validatedData);
+        $room = Room::create($validatedData);
+
+        // $rulesDataImage = [
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ];
+
+        // $validatedDataImage = $request->validate($rulesDataImage);
+        // $validatedDataImage['fk_id_room'] = $room->id;
+
+        // $image = $request->file('image');
+        // $imageName = time() . '.' . $image->extension();
+        // $image->move(public_path('images/rooms'), $imageName);
+        // $image->store('public/images/rooms');
+
+        // RoomImage::create($validatedDataImage);
 
         return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil ditambahkan');
     }

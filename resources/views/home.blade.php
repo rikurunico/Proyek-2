@@ -332,7 +332,7 @@
         </div>
         </section><!-- End Gallery Section -->
 
-        <!-- ======= Testimonials Section ======= -->
+        {{-- <!-- ======= Testimonials Section ======= -->
         <section id="testimonials" class="testimonials">
         <div class="container">
 
@@ -409,7 +409,7 @@
             </div>
 
         </div>
-        </section><!-- End Testimonials Section -->
+        </section><!-- End Testimonials Section --> --}}
 
         <!-- ======= Pricing Section ======= -->
         <section id="pricing" class="pricing">
@@ -475,19 +475,19 @@
                 <div class="address">
                     <i class="bi bi-geo-alt"></i>
                     <h4>Location:</h4>
-                    <p>A108 Adam Street, New York, NY 535022</p>
+                    <p>Jl. Semanggi Barat No.18, Lowokwaru, Malang</p>
                 </div>
 
                 <div class="email">
                     <i class="bi bi-envelope"></i>
                     <h4>Email:</h4>
-                    <p>info@example.com</p>
+                    <p>darussaadah@gmail.com</p>
                 </div>
 
                 <div class="phone">
                     <i class="bi bi-phone"></i>
-                    <h4>Call:</h4>
-                    <p>+1 5589 55488 55s</p>
+                    <h4>Whatsapp:</h4>
+                    <p>+62 813-3498-3535</p>
                 </div>
 
                 </div>
@@ -536,13 +536,12 @@
 
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-info">
-                        <h3>Bootslander</h3>
+                        <h3>Daarus Sa'adah</h3>
                         <p class="pb-3"><em>Qui repudiandae et eum dolores alias sed ea. Qui suscipit veniam excepturi quod.</em></p>
                         <p>
-                            A108 Adam Street <br>
-                            NY 535022, USA<br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
+                            Jl. Semanggi Barat No.18<br>Lowokwaru ,Malang<br>
+                            <strong>Whatsapp:</strong>+62 813-3498-3535<br>
+                            <strong>Email:</strong> darussaadah@gmail.com<br>
                         </p>
                         <div class="social-links mt-3">
                             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>

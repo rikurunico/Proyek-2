@@ -60,7 +60,7 @@
                         
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $room->dormitory->name }}</td>
+                            <td>{!! $room->dormitory->name ?? '<i>Tidak Ada Penghuni</i>'!!}</td>
                             <td>{{ $room->room_number }}</td>
                             
                             <td class="d-flex">

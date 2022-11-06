@@ -8,20 +8,27 @@
 	<div class="col-md-8 mb-5 p-0">
 		<form action="{{ route($rooms_route["store"]) }}" method="post" enctype="multipart/form-data">
 			@csrf
-			{{-- <div class="mb-3">
-				<label for="name" class="form-label">Nama Kamar</label>
-				<select name="name" class="form-select @error('name') is-invalid @enderror" id="name" required autofocus>
-					<option disabled>Pilih Penghuni Kamar</option>
-					@foreach ($dormitories as $dormitory)
-						<option value="{{ $dormitory->name }}">{{ $dormitory->name }}</option>
-					@endforeach
-				</select>
-				@error('name')
+			<div class="mb-3">
+				<label for="fk_id_dormitory" class="form-label @error('fk_id_dormitory') is-invalid @enderror">Nama Penghuni Kos</label>
+				@if ($dormitories)
+					<select class="form-select" name="fk_id_dormitory" id="fk_id_dormitory" required>
+						@foreach ($dormitories as $dormitory)
+							@if (old("fk_id_dormitory") == $dormitory->id)
+								<option value="{{ $dormitory->id }}" selected>{{ $dormitory->name }}</option>
+							@else
+								<option value="{{ $dormitory->id }}">{{ $dormitory->name }}</option>
+							@endif
+						@endforeach
+					</select>
+				@else
+					<div class="form-control is-invalid">Tidak ada penghuni kos. Tambah data penghuni kos dahulu <a href="{{ route($dormitories_routes["index"]) }}">disini</a></div>
+				@endif
+				@error('fk_id_dormitory')
 					<div class="invalid-feedback">
 						{{ $message }}
 					</div>
 				@enderror
-			</div> --}}
+			</div>
 			<div class="mb-3">
 				<label for="room_number" class="form-label">Nomer Kamar</label>
 				<input type="number" name="room_number" class="form-control @error('room_number') is-invalid @enderror" id="room_number" value="{{ old("room_number") }}" required>
@@ -36,7 +43,7 @@
 				<span>
 					<img class="img-preview img-fluid mb-3 p-0 border-1 border-primary d-none" id="image-preview" style="border: solid">
 				</span>
-				<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" multiple>
+				<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" multiple accept="image/*">
 				@error('image')
 					<div class="invalid-feedback">
 						{{ $message }}
