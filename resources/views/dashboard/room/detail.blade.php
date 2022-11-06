@@ -20,15 +20,17 @@
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ $room->roomimages->image }}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://picsum.photos/id/201/1920/1080" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="...">
-                    </div>
+                    @for ($i = 0; $i < count($room->roomimages); $i++)
+                        @if ($i == 0)
+                            <div class="carousel-item active">
+                                <img src="{{ asset("storage/" . $room->roomimages[$i]->image) }}" class="d-block w-100" alt="...">
+                            </div>
+                        @else
+                            <div class="carousel-item">
+                                <img src="{{ asset("storage/" . $room->roomimages[$i]->image) }}" class="d-block w-100" alt="...">
+                            </div>
+                        @endif
+                    @endfor
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

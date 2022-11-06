@@ -43,7 +43,7 @@
 				<span>
 					<img class="img-preview img-fluid mb-3 p-0 border-1 border-primary d-none" id="image-preview" style="border: solid">
 				</span>
-				<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" multiple accept="image/*">
+				<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image[]" multiple accept="image/*">
 				@error('image')
 					<div class="invalid-feedback">
 						{{ $message }}

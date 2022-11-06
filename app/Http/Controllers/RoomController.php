@@ -7,7 +7,6 @@ use App\Models\Room;
 use App\Models\RoomImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class RoomController extends Controller
 {
@@ -86,17 +85,19 @@ class RoomController extends Controller
         $unique_room_number = Room::with(["dormitory"])->where("room_number", $request->room_number)->first();
         if ($unique_room_number) {
             $validator->errors()->add(
-                'room_number', "The room_number has already been taken."
+                'room_number',
+                "The room_number has already been taken."
             );
             return redirect(route(RoomController::ROOM_ROUTE["create"]))->withErrors($validator)->withInput();
         } else {
             $unique_room_number = Room::withTrashed()->where("room_number", $request->room_number)->first();
             if ($unique_room_number) {
                 $validator->errors()->add(
-                    'room_number', "The room_number has in trash. To use this room_number please restore the data. Click <a href='" . route(RoomController::ROOM_ROUTE["trashDetail"], $unique_room_number->id) . "'>here to restore</a>"
+                    'room_number',
+                    "The room_number has in trash. To use this room_number please restore the data. Click <a href='" . route(RoomController::ROOM_ROUTE["trashDetail"], $unique_room_number->id) . "'>here to restore</a>"
                 );
                 return redirect(route(RoomController::ROOM_ROUTE["create"]))->withErrors($validator)->withInput();
-            } 
+            }
         }
 
         $room = Room::create($validatedData);
@@ -105,18 +106,28 @@ class RoomController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 
-        $validatedDataImage = $request->validate($rulesDataImage);
+        //Buat Ngitung Jumlah Image
+        $countImage = count((array)$request->file('image'));
 
-        $validatedData["fk_id_room"] = $room->id;
+        for ($i = 0; $i < $countImage; $i++) {
+            $validator = Validator::make($request->all(), $rulesDataImage);
+            $validatedDataImage = $validator->validated();
+            $file = $request->file('image')[$i];
+            $file = $file->store('rooms_image', 'public');
 
-        if ($request->file("image")) {
-            $pathFile = $request->file("image")->store("room-images", "public");
-            // $parseUrl = explode("/", $pathFile);
-            // unset($parseUrl[0]);
-            // $validatedDataImage["image"] = implode("/", $parseUrl);
+            $roomImage = new RoomImage();
+            $roomImage->image = $file;
+            $roomImage->fk_id_room = $room->id;
+            $roomImage->save();
         }
 
-        RoomImage::create($validatedDataImage);
+        // $validatedDataImage = $request->validate($rulesDataImage);
+
+        // $validatedDataImage["fk_id_room"] = $room->id;
+
+        // $file = $request->file('image')->store('rooms', 'public');
+
+        // $validatedDataImage["image"] = $file;
 
         return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil ditambahkan');
     }
@@ -132,7 +143,7 @@ class RoomController extends Controller
         return view(RoomController::ROOM_VIEW["detail"], [
             'title' => "Detail Kamar $room->name",
             'room' => $room,
-            'rooms_route' => RoomController::ROOM_ROUTE
+            'rooms_route' => RoomController::ROOM_ROUTE,
         ]);
     }
 
@@ -202,7 +213,7 @@ class RoomController extends Controller
     public function trashShow($id)
     {
         $room = Room::withTrashed()->findOrFail($id);
-        if($room->trashed()){
+        if ($room->trashed()) {
             return view(RoomController::ROOM_VIEW["trashDetail"], [
                 'title' => "Detail Kamar $room->room_number",
                 'room' => $room,
@@ -216,7 +227,7 @@ class RoomController extends Controller
     public function trashRestore($id)
     {
         $room = Room::withTrashed()->findOrFail($id);
-        if($room->trashed()){
+        if ($room->trashed()) {
             $room->restore();
             return redirect()->route(RoomController::ROOM_ROUTE["trashIndex"])->with('success', 'Data berhasil di restore. Lihat data <a href="' . route(RoomController::ROOM_ROUTE["index"]) . '">disini</a>');
         } else {
@@ -227,11 +238,11 @@ class RoomController extends Controller
     public function trashDelete($id)
     {
         $room = Room::withTrashed()->findOrFail($id);
-        if($room->trashed()){
+        if ($room->trashed()) {
             $room->forceDelete();
             return redirect()->route(RoomController::ROOM_ROUTE["trashIndex"])->with('success', 'Data berhasil di hapus secara permanent');
         } else {
             return redirect()->route(RoomController::ROOM_ROUTE["trashIndex"])->with('success', 'Data tidak ada di sampah');
         }
-    } 
+    }
 }
