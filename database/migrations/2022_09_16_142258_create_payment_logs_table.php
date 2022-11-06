@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('payment_date');
             $table->string('status');
             $table->integer('payment_month');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

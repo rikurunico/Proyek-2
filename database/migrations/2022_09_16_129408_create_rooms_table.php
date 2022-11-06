@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
             $table->string('room_number')->unique();
-            $table->string('preview_image')->nullable();
+            $table->unsignedBigInteger('fk_id_dormitory')->nullable();
+            $table->foreign("fk_id_dormitory")->references("id")->on("dormitories")->nullOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

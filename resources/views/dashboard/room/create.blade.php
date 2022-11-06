@@ -8,10 +8,10 @@
 	<div class="col-md-8 mb-5 p-0">
 		<form action="{{ route($rooms_route["store"]) }}" method="post" enctype="multipart/form-data">
 			@csrf
-			<div class="mb-3">
+			{{-- <div class="mb-3">
 				<label for="name" class="form-label">Nama Kamar</label>
 				<select name="name" class="form-select @error('name') is-invalid @enderror" id="name" required autofocus>
-					<option value="">Pilih Penghuni Kamar</option>
+					<option disabled>Pilih Penghuni Kamar</option>
 					@foreach ($dormitories as $dormitory)
 						<option value="{{ $dormitory->name }}">{{ $dormitory->name }}</option>
 					@endforeach
@@ -21,7 +21,7 @@
 						{{ $message }}
 					</div>
 				@enderror
-			</div>
+			</div> --}}
 			<div class="mb-3">
 				<label for="room_number" class="form-label">Nomer Kamar</label>
 				<input type="number" name="room_number" class="form-control @error('room_number') is-invalid @enderror" id="room_number" value="{{ old("room_number") }}" required>
@@ -31,6 +31,19 @@
 					</div>
 				@enderror
 			</div>
+			<div class="mb-3">
+				<label for="image" class="form-label">Image</label>
+				<span>
+					<img class="img-preview img-fluid mb-3 p-0 border-1 border-primary d-none" id="image-preview" style="border: solid">
+				</span>
+				<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" multiple>
+				@error('image')
+					<div class="invalid-feedback">
+						{{ $message }}
+					</div>
+				@enderror
+			</div>
+
 			{{-- <div class="mb-3">
 				<label for="preview_image" class="form-label">Gambar Kamar</label>
 				<input type="text" name="preview_image" class="form-control @error('preview_image') is-invalid @enderror" id="preview_image" value="{{ old("preview_image") }}" required>
@@ -43,4 +56,23 @@
 			<button type="submit" class="btn btn-primary">Tambah Data</button>
 		</form>
 	</div>
+	<script>
+		const inputImage = document.querySelector("#image");
+		const previewImage = document.querySelector("#image-preview.img-preview");
+		
+		inputImage.onchange = function(){
+			previewImage.classList.remove("d-none")			
+			previewImage.style.display = "block";
+			previewImage.style.height = "350px";
+			previewImage.style.aspectRatio = "16/9";
+			previewImage.style.objectFit = "cover";
+
+			const oFReader = new FileReader();
+			oFReader.readAsDataURL(inputImage.files[0]);
+
+			oFReader.onload = function (oFREvent) {
+				previewImage.src = oFREvent.target.result;
+			}
+		}
+	</script>
 @endsection

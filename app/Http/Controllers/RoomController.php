@@ -34,7 +34,7 @@ class RoomController extends Controller
     {
         return view(RoomController::ROOM_VIEW["index"], [
             'title' => 'Room',
-            'rooms' => Room::orderBy("name")->paginate(10),
+            'rooms' => Room::with(["dormitory"])->orderBy("room_number")->paginate(10),
             'rooms_route' => RoomController::ROOM_ROUTE
         ]);
     }
@@ -65,7 +65,6 @@ class RoomController extends Controller
     {
 
         $rulesData = [
-            'name' => 'required|unique:rooms',
             'room_number' => 'required|integer|min:0|unique:rooms',
             // 'preview_image' => 'required|image|max:2048',
         ];
@@ -100,9 +99,11 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
+        // return dd($room);
         return view(RoomController::ROOM_VIEW["edit"], [
             'title' => "Edit Kamar $room->name",
             'room' => $room,
+            'dormitories' => Dormitory::all(),
             'rooms_route' => RoomController::ROOM_ROUTE
         ]);
     }
@@ -116,15 +117,17 @@ class RoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
+        // return dd($request);
         $rulesData = [
             'name' => 'required|unique:rooms,name,' . $room->id,
             'room_number' => 'required|integer|min:0|unique:rooms,room_number,' . $room->id,
-            'preview_image' => 'required|image|max:2048',
+            // 'preview_image' => 'required|image|max:2048',
         ];
 
         $validatedData = $request->validate($rulesData);
 
         Room::where("id", $room->id)->update($validatedData);
+
         return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil diedit');
     }
 

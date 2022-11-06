@@ -7,8 +7,8 @@
 :root {
     /* red velvet = ff4b2b */
     /* red velvet gradasi = #ff416c */
-    --mainColor: #0d6efd;
-    --gradasiColor: #610dfd;
+    --mainColor: rgba(1, 4, 136, 0.9);
+    --gradasiColor: rgb(1, 4, 255, 0.9);
 }
 
 body {
@@ -162,15 +162,11 @@ input {
 .overlay {
     background: var(--gradasiColor);
     background: -webkit-linear-gradient(
-        to right,
+        to left,
         var(--mainColor),
         var(--gradasiColor)
     );
-    background: linear-gradient(
-        to right,
-        var(--mainColor),
-        var(--gradasiColor)
-    );
+    background: linear-gradient(to left, var(--mainColor), var(--gradasiColor));
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -187,7 +183,6 @@ input {
     margin: 0 0 1rem;
     color: red;
 }
-
 
 .container.right-panel-active .overlay {
     transform: translateX(50%);

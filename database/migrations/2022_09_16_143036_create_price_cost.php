@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('price_cost', function (Blueprint $table) {
             $table->id();
             $table->integer('price');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

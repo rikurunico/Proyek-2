@@ -13,17 +13,34 @@
     </div>
     <div class="col-lg-8 mb-5 p-0">
         <div class="p-0 mb-sm-3">
-            <img class="mx-sm-auto-custom" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" alt="Gambar" height="350px" style="display: block; aspect-ratio: 2/3; object-fit:cover; border:solid;"/>
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://picsum.photos/id/200/1920/1080" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://picsum.photos/id/201/1920/1080" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://picsum.photos/1920/1080" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
         <div class="d-flex p-0 flex-sm-column">
-            <div class="row my-3 p-0">
-                <div class="col-md-5">
-                    <span class="form-control border-1 border-primary">Nama Kamar</span>
-                </div>
-                <div class="col-md-7">
-                    <span class="form-control border-1 border-primary">{{ $room->name }}</span>
-                </div>
-            </div>
             <div class="row my-3 p-0">
                 <div class="col-md-5">
                     <span class="form-control border-1 border-primary">Nomer Kamar</span>

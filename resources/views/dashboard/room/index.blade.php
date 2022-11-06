@@ -50,17 +50,19 @@
                 <thead>
                     <tr>
                         <th scope="col">Nomer</th>
-                        <th scope="col">Nama Kamar</th>
+                        <th scope="col">Nama Penghuni Kamar</th>
                         <th scope="col">Nomer Kamar</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($rooms as $room)                
+                    @foreach ($rooms as $room)        
+                        
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $room->name }}</td>
+                            <td>{{ $room->dormitory->name }}</td>
                             <td>{{ $room->room_number }}</td>
+                            
                             <td class="d-flex">
                                 <a href="{{ route($rooms_route["show"], $room->id) }}" class="btn btn-primary mr-2">Detail</a>
                                 <a href="{{ route($rooms_route["edit"], $room->id) }}" class="btn btn-warning mr-2">Edit</a>
