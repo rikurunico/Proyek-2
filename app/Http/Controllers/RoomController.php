@@ -106,28 +106,15 @@ class RoomController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 
-        //Buat Ngitung Jumlah Image
-        $countImage = count((array)$request->file('image'));
+        for ($i = 0; $i < count($request->file('image')); $i++) {
+            $validatedDataImage = $request->validate($rulesDataImage);
+            $file = $request->file('image')[$i]->store('rooms-images', 'public');
 
-        for ($i = 0; $i < $countImage; $i++) {
-            $validator = Validator::make($request->all(), $rulesDataImage);
-            $validatedDataImage = $validator->validated();
-            $file = $request->file('image')[$i];
-            $file = $file->store('rooms_image', 'public');
+            $validatedDataImage["image"] = $file;
+            $validatedDataImage["fk_id_room"] = $room->id;
 
-            $roomImage = new RoomImage();
-            $roomImage->image = $file;
-            $roomImage->fk_id_room = $room->id;
-            $roomImage->save();
+            RoomImage::create($validatedDataImage);
         }
-
-        // $validatedDataImage = $request->validate($rulesDataImage);
-
-        // $validatedDataImage["fk_id_room"] = $room->id;
-
-        // $file = $request->file('image')->store('rooms', 'public');
-
-        // $validatedDataImage["image"] = $file;
 
         return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil ditambahkan');
     }
