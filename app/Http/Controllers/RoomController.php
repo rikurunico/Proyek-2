@@ -231,10 +231,11 @@ class RoomController extends Controller
             $images = RoomImage::with(["room"])->where("fk_id_room", $room->id)->get();
 
             foreach($images as $image){
-                Storage::delete("storage/" . $image->image);
+                Storage::disk('public')->delete($image->image);
+                RoomImage::with(["room"])->findOrFail($image->id)->delete();
+                $imageDB = RoomImage::withTrashed()->findOrFail($image->id);
+                $imageDB->forceDelete();
             }
-
-            RoomImage::with(["room"])->where("fk_id_room", $room->id)->delete();
 
             $room->forceDelete();
             return redirect()->route(RoomController::ROOM_ROUTE["trashIndex"])->with('success', 'Data berhasil di hapus secara permanent');
