@@ -3,12 +3,12 @@
 @section('container')
     <h2 class="mb-3 fs-sm-3">Detail Kamar {{ $room->title }}</h2>
     <div class="col-lg-8 p-0 mb-3 mb-sm-4">
-        <a class="btn btn-primary me-3 w-sm-100 mb-sm-1" href="{{ route($rooms_route["index"]) }}">Kembali ke Data Tabel</a>
-        <a class="btn btn-warning me-3 w-sm-100 mb-sm-1" href="{{ route($rooms_route["edit"], $room->id) }}">Edit Data</a>
-        <form action="{{ route($rooms_route["delete"], $room->id) }}" class="d-inline" method="post">
+        <a class="btn btn-primary me-3 w-sm-100 mb-sm-1" href="{{ route($rooms_route["trashIndex"]) }}">Kembali ke Data Tabel</a>
+        <a class="btn btn-warning me-3 w-sm-100 mb-sm-1" href="{{ route($rooms_route["trashDetail"], $room->id) }}" onclick="return confirm('Restore data kamar nomer {{ $room->room_number }}, Konfirmasi ?')" >Restore</a>
+        <form action="{{ route($rooms_route["trashDelete"], $room->id) }}" class="d-inline" method="post">
             @csrf
             @method("delete")
-            <button onclick="return confirm('Konfirmasi')" class="btn btn-danger w-sm-100 mb-sm-1">Hapus</button>
+            <button onclick="return confirm('Data akan dihapus secara permanent, Konfirmasi ?')" class="btn btn-danger w-sm-100 mb-sm-1">Hapus Permanent</button>
         </form>
     </div>
     <div class="col-lg-8 mb-5 p-0">
@@ -22,6 +22,10 @@
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $i }}" aria-label="Slide {{ $i+1 }}"></button>
                         @endif
                     @endfor
+                    {{-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button> --}}
                 </div>
                 <div class="carousel-inner bg-primary flex justify-content-center align-items-center w-100">
                     @for ($i = 0; $i < count($room->roomimages); $i++)
@@ -60,7 +64,7 @@
                     <span class="form-control border-1 border-primary">Nama Penghuni Kos</span>
                 </div>
                 <div class="col-md-7">
-                    <span class="form-control border-1 border-primary">{{ $room->dormitory->name ?? "Tidak ada penghuni"}}</span>
+                    <span class="form-control border-1 border-primary">{{ $room->dormitory->name }}</span>
                 </div>
             </div>
         </div>

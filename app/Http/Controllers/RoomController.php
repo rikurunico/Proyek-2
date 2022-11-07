@@ -6,6 +6,7 @@ use App\Models\Dormitory;
 use App\Models\Room;
 use App\Models\RoomImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller
@@ -107,8 +108,9 @@ class RoomController extends Controller
         ];
 
         for ($i = 0; $i < count($request->file('image')); $i++) {
-            $validatedDataImage = $request->validate($rulesDataImage);
-            $file = $request->file('image')[$i]->store('rooms-images', 'public');
+            $validator = Validator::make($request->all(), $rulesDataImage);
+            $validatedDataImage = $validator->validated();
+            $file = $request->file('image')[$i]->store('room-images', 'public');
 
             $validatedDataImage["image"] = $file;
             $validatedDataImage["fk_id_room"] = $room->id;
@@ -226,6 +228,14 @@ class RoomController extends Controller
     {
         $room = Room::withTrashed()->findOrFail($id);
         if ($room->trashed()) {
+            $images = RoomImage::with(["room"])->where("fk_id_room", $room->id)->get();
+
+            foreach($images as $image){
+                Storage::delete("storage/" . $image->image);
+            }
+
+            RoomImage::with(["room"])->where("fk_id_room", $room->id)->delete();
+
             $room->forceDelete();
             return redirect()->route(RoomController::ROOM_ROUTE["trashIndex"])->with('success', 'Data berhasil di hapus secara permanent');
         } else {
