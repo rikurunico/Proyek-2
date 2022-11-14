@@ -11,60 +11,62 @@
             <button onclick="return confirm('Data akan dihapus secara permanent, Konfirmasi ?')" class="btn btn-danger w-sm-100 mb-sm-1">Hapus Permanent</button>
         </form>
     </div>
-    <div class="col-lg-8 mb-5 p-0">
+    <div class="col-xl-8 mb-5 p-0">
         <div class="p-0 mb-sm-3">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-                <div class="carousel-indicators">
-                    @for ($i = 0; $i < count($room->roomimages); $i++)
-                        @if ($i == 0)
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $i }}" class="active" aria-current="true" aria-label="Slide {{ $i+1 }}"></button>
-                        @else
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $i }}" aria-label="Slide {{ $i+1 }}"></button>
-                        @endif
-                    @endfor
-                    {{-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button> --}}
+            @if (count($room->roomimages) > 0)
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        @for ($i = 0; $i < count($room->roomimages); $i++)
+                            @if ($i == 0)
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $i }}" class="active" aria-current="true" aria-label="Slide {{ $i+1 }}"></button>
+                            @else
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $i }}" aria-label="Slide {{ $i+1 }}"></button>
+                            @endif
+                        @endfor
+                    </div>
+                    <div class="carousel-inner bg-primary flex justify-content-center align-items-center w-100">
+                        @for ($i = 0; $i < count($room->roomimages); $i++)
+                            @if ($i == 0)
+                                <div class="carousel-item active">
+                                    <img src="{{ asset("storage/" . $room->roomimages[$i]->image) }}" class="d-block w-100" alt="...">
+                                </div>
+                            @else
+                                <div class="carousel-item">
+                                    <img src="{{ asset("storage/" . $room->roomimages[$i]->image) }}" class="d-block w-100" alt="...">
+                                </div>
+                            @endif
+                        @endfor
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                <div class="carousel-inner bg-primary flex justify-content-center align-items-center w-100">
-                    @for ($i = 0; $i < count($room->roomimages); $i++)
-                        @if ($i == 0)
-                            <div class="carousel-item active">
-                                <img src="{{ asset("storage/" . $room->roomimages[$i]->image) }}" class="d-block w-100" alt="...">
-                            </div>
-                        @else
-                            <div class="carousel-item">
-                                <img src="{{ asset("storage/" . $room->roomimages[$i]->image) }}" class="d-block w-100" alt="...">
-                            </div>
-                        @endif
-                    @endfor
+            @else
+                <div class="col-md-8 mb-3 p-0">
+                    <span class="form-control border-1 border-danger text-danger">Tidak ada gambar untuk kamar ini</span>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+            @endif
         </div>
         <div class="d-flex p-0 flex-sm-column">
             <div class="row my-3 p-0">
-                <div class="col-md-5">
+                <div class="col-lg-5">
                     <span class="form-control border-1 border-primary">Nomer Kamar</span>
                 </div>
-                <div class="col-md-7">
+                <div class="col-lg-7">
                     <span class="form-control border-1 border-primary">{{ $room->room_number }}</span>
                 </div>
             </div>
             <div class="row my-3 p-0">
-                <div class="col-md-5">
+                <div class="col-lg-5">
                     <span class="form-control border-1 border-primary">Nama Penghuni Kos</span>
                 </div>
-                <div class="col-md-7">
-                    <span class="form-control border-1 border-primary">{{ $room->dormitory->name }}</span>
+                <div class="col-lg-7">
+                    <span class="form-control border-1 border-primary {{ $room->dormitory->name ?? "text-danger"}}">{{ $room->dormitory->name ?? "Tidak ada penghuni"}}</span>
                 </div>
             </div>
         </div>

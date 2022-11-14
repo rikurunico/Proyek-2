@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentLogController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
+use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name("home");
+
+Route::get('/sketch', function () {
+    return view('sketch.index', [
+        "room" => Room::with(["dormitory", "roomimages"])->get()
+    ]);
+})->name("sketch.index");
+
+Route::get('/sketch/{room_number}', function ($room_number) {
+    return view('ajax.modalsketch', [
+        "room" => Room::with(["dormitory", "roomimages"])->where("room_number", $room_number)->first(),
+        "room_number" => $room_number
+    ]);
+})->name("sketch.ajax");
 
 Route::get('/login', [LoginController::class, "index"])->middleware("guest")->name("login");
 Route::post('/login', [LoginController::class, "store"])->name("login.store");

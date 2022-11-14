@@ -11,8 +11,9 @@
             <button onclick="return confirm('Konfirmasi')" class="btn btn-danger w-sm-100 mb-sm-1">Hapus</button>
         </form>
     </div>
-    <div class="col-lg-8 mb-5 p-0">
+    <div class="col-xl-8 mb-5 p-0">
         <div class="p-0 mb-sm-3">
+            @if (count($room->roomimages) > 0)
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-indicators">
                     @for ($i = 0; $i < count($room->roomimages); $i++)
@@ -45,22 +46,27 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+        @else
+            <div class="col-md-8 mb-3 p-0">
+                <span class="form-control border-1 border-danger text-danger">Tidak ada gambar untuk kamar ini</span>
+            </div>
+        @endif
         </div>
         <div class="d-flex p-0 flex-sm-column">
             <div class="row my-3 p-0">
-                <div class="col-md-5">
+                <div class="col-lg-5">
                     <span class="form-control border-1 border-primary">Nomer Kamar</span>
                 </div>
-                <div class="col-md-7">
+                <div class="col-lg-7">
                     <span class="form-control border-1 border-primary">{{ $room->room_number }}</span>
                 </div>
             </div>
             <div class="row my-3 p-0">
-                <div class="col-md-5">
+                <div class="col-lg-5">
                     <span class="form-control border-1 border-primary">Nama Penghuni Kos</span>
                 </div>
-                <div class="col-md-7">
-                    <span class="form-control border-1 border-primary">{{ $room->dormitory->name ?? "Tidak ada penghuni"}}</span>
+                <div class="col-lg-7">
+                    <span class="form-control border-1 border-primary {{ $room->dormitory->name ?? "text-danger"}}">{{ $room->dormitory->name ?? "Tidak ada penghuni"}}</span>
                 </div>
             </div>
         </div>

@@ -25,19 +25,54 @@ class DatabaseSeeder extends Seeder
 
         DB::table('dormitories')->insert([
             [ 
-                "name" => "Asep",
+                "name" => "Hilmy",
                 "address" => "Malang",
                 "phone_number" => "081234567890"
             ],
             [ 
-                "name" => "Budi",
+                "name" => "Daniar",
                 "address" => "Surabaya",
                 "phone_number" => "0812345678901"
             ],
             [ 
-                "name" => "Ceco",
+                "name" => "Wawan",
                 "address" => "Madura",
                 "phone_number" => "0812345678902"
+            ],
+            [ 
+                "name" => "Ikmal",
+                "address" => "Madura",
+                "phone_number" => "0812345678902"
+            ],
+            [ 
+                "name" => "Aria",
+                "address" => "Madura",
+                "phone_number" => "0812345678902"
+            ],
+            [ 
+                "name" => "Fakhi",
+                "address" => "Kediri",
+                "phone_number" => "0812345678102"
+            ],
+            [ 
+                "name" => "Tama",
+                "address" => "Bandung",
+                "phone_number" => "0812345478902"
+            ],
+            [ 
+                "name" => "Faidh",
+                "address" => "Lembang",
+                "phone_number" => "0812345178902"
+            ],
+            [ 
+                "name" => "Firman",
+                "address" => "Tangulangin",
+                "phone_number" => "0812345678909"
+            ],
+            [ 
+                "name" => "Almas",
+                "address" => "Probolinggo",
+                "phone_number" => "0812345678992"
             ],
         ]);
 
@@ -54,19 +89,95 @@ class DatabaseSeeder extends Seeder
                 "room_number" => "3",
                 "fk_id_dormitory" => NULL,
             ],
+            [ 
+                "room_number" => "4",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "5",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "6",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "7",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "8",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "9",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "10",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "11",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "12",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "13",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "14",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "15",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "16",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "17",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "18",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "19",
+                "fk_id_dormitory" => NULL,
+            ],
+            [ 
+                "room_number" => "20",
+                "fk_id_dormitory" => NULL,
+            ],
         ]);
 
         DB::table('room_images')->insert([
             [ 
-                "image" => "1.jpg",
+                "image" => "room-images/1.jpg",
                 "fk_id_room" => 1
             ],
             [ 
-                "image" => "2.jpg",
+                "image" => "room-images/2.png",
                 "fk_id_room" => 1
             ],
             [ 
-                "image" => "3.jpg",
+                "image" => "room-images/3.png",
+                "fk_id_room" => 1,
+            ],
+            [ 
+                "image" => "room-images/4.png",
+                "fk_id_room" => 1,
+            ],
+            [ 
+                "image" => "room-images/5.png",
                 "fk_id_room" => 1,
             ],
         ]);

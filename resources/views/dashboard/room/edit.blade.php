@@ -11,18 +11,20 @@
             @method("put")
 
 			<div class="mb-3">
-				<label for="name" class="form-label">Nama Kamar</label>
-				<select name="name" class="form-select @error('name') is-invalid @enderror" id="name" required autofocus>
-					<option disabled>Pilih Penghuni Kamar</option>
+				<label for="fk_id_dormitory" class="form-label">Nama Kamar</label>
+				<select name="fk_id_dormitory" class="form-select @error('fk_id_dormitory') is-invalid @enderror" id="fk_id_dormitory" required autofocus>
+					@if (!$room->fk_id_dormitory)			
+						<option value="0" selected>Tidak Ada Penghuni</option>
+					@endif
 					@foreach ($dormitories as $dormitory)
-						@if (old("name", $room->name) == $room->name)
-							<option value="{{ $dormitory->name }}">{{ $dormitory->name }}</option>
+						@if (old("fk_id_dormitory", $room->fk_id_dormitory) == $dormitory->id)
+							<option value="{{ $dormitory->id }}" selected>{{ $dormitory->name }}</option>
 						@else
-							<option value="{{ $dormitory->name }}">{{ $dormitory->name }}</option>
+							<option value="{{ $dormitory->id }}">{{ $dormitory->name }}</option>
 						@endif
 					@endforeach
 				</select>
-				@error('name')
+				@error('fk_id_dormitory')
 					<div class="invalid-feedback">
 						{{ $message }}
 					</div>

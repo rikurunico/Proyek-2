@@ -164,12 +164,16 @@ class RoomController extends Controller
     {
         // return dd($request);
         $rulesData = [
-            'name' => 'required|unique:rooms,name,' . $room->id,
+            'fk_id_dormitory' => 'required|unique:rooms,fk_id_dormitory,' . $room->id,
             'room_number' => 'required|integer|min:0|unique:rooms,room_number,' . $room->id,
             // 'preview_image' => 'required|image|max:2048',
         ];
 
         $validatedData = $request->validate($rulesData);
+
+        if ($validatedData["fk_id_dormitory"] == 0) {
+            $validatedData["fk_id_dormitory"] = null;
+        }
 
         Room::where("id", $room->id)->update($validatedData);
 

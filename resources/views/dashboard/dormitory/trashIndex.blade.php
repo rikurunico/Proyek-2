@@ -53,7 +53,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex justify-content-center">
+        <div>
             {{ $dormitories->links() }}
         </div>
     @else

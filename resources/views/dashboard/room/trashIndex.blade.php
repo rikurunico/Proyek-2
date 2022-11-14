@@ -25,19 +25,16 @@
                 </style>
                 <thead>
                     <tr>
-                        <th scope="col">Nomer</th>
-                        <th scope="col">Nama Penghuni Kamar</th>
                         <th scope="col">Nomer Kamar</th>
+                        <th scope="col">Nama Penghuni Kamar</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($rooms as $room)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{!! $room->dormitory->name ?? '<i>Tidak Ada Penghuni</i>'!!}</td>
                             <td>{{ $room->room_number }}</td>
-                            
+                            <td>{!! $room->dormitory->name ?? '<i class="text-danger">Tidak Ada Penghuni</i>'!!}</td>
                             <td class="d-flex">
                                 <a href="{{ route($rooms_route["trashDetail"], $room->id) }}" class="btn btn-primary mr-2">Detail</a>
                                 <a href="{{ route($rooms_route["trashRestore"], $room->id) }}" class="btn btn-warning mr-2" onclick="return confirm('Restore data kamar nomer {{ $room->room_number }}, Konfirmasi ?')" >Restore</a>
@@ -52,7 +49,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex justify-content-center">
+        <div>
             {{ $rooms->links() }}
         </div>
     @else
