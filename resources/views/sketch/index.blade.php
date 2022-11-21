@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <title>Denah Kos Daarus Sa'adah</title>
     <!-- Favicons -->
     {{-- <link href={{ asset("assets/img/favicon.png") }} rel="icon">
