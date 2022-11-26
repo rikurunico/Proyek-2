@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentLogController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImageRoomController;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 
@@ -69,4 +70,10 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/dashboard/trash/dormitory/{id}', [DormitoryController::class, "trashDelete"])->name("dormitory.trash.delete");
     Route::delete('/dashboard/trash/transactions/{id}', [PaymentLogController::class, "trashDelete"])->name("transactions.trash.delete");
     Route::delete('/dashboard/trash/users/{id}', [UserController::class, "trashDelete"])->name("users.trash.delete");
+
+    // --Rooms Image--
+    // Delete Image
+    Route::get('/dashboard/rooms/{id}/image', [ImageRoomController::class, "Destroy"])->name("image.rooms.destroy");
+    // Add Image
+    Route::post('/dashboard/rooms/{id}/image', [ImageRoomController::class, "Store"])->name("image.rooms.store");
 });

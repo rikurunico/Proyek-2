@@ -22,7 +22,7 @@ class RoomController extends Controller
         "trashIndex" => "rooms.trash.index",
         "trashDetail" => "rooms.trash.detail",
         "trashRestore" => "rooms.trash.restore",
-        "trashDelete" => "rooms.trash.delete"
+        "trashDelete" => "rooms.trash.delete",
     ];
 
     public const ROOM_VIEW = [
@@ -149,7 +149,8 @@ class RoomController extends Controller
             'title' => "Edit Kamar $room->name",
             'room' => $room,
             'dormitories' => Dormitory::all(),
-            'rooms_route' => RoomController::ROOM_ROUTE
+            'rooms_route' => RoomController::ROOM_ROUTE,
+            'room_images' => RoomImage::where("fk_id_room", $room->id)->get(),
         ]);
     }
 
@@ -166,7 +167,6 @@ class RoomController extends Controller
         $rulesData = [
             'fk_id_dormitory' => 'required|unique:rooms,fk_id_dormitory,' . $room->id,
             'room_number' => 'required|integer|min:0|unique:rooms,room_number,' . $room->id,
-            // 'preview_image' => 'required|image|max:2048',
         ];
 
         $validatedData = $request->validate($rulesData);
@@ -175,7 +175,19 @@ class RoomController extends Controller
             $validatedData["fk_id_dormitory"] = null;
         }
 
+        $rulesDataImage = [
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];
+
+        $validator = Validator::make($request->all(), $rulesDataImage);
+        $validatedDataImage = $validator->validated();
+        $file = $request->file('image')->store('room-images', 'public');
+
+        $validatedDataImage["image"] = $file;
+        $validatedDataImage["fk_id_room"] = $room->id;
         Room::where("id", $room->id)->update($validatedData);
+        RoomImage::create($validatedDataImage);
+
 
         return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil diedit');
     }
@@ -234,7 +246,7 @@ class RoomController extends Controller
         if ($room->trashed()) {
             $images = RoomImage::with(["room"])->where("fk_id_room", $room->id)->get();
 
-            foreach($images as $image){
+            foreach ($images as $image) {
                 Storage::disk('public')->delete($image->image);
                 RoomImage::with(["room"])->findOrFail($image->id)->delete();
                 $imageDB = RoomImage::withTrashed()->findOrFail($image->id);
