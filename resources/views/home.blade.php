@@ -47,19 +47,16 @@
             <li><a class="nav-link scrollto" href="#pricing">Harga</a></li>
             <li class="dropdown"><a href="#"><span>Data</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
-                <li><a href="{{ route("sketch.index") }}">Data Denah</a></li>
-                {{-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                    <ul>
-                    <li><a href="#">Deep Drop Down 1</a></li>
-                    <li><a href="#">Deep Drop Down 2</a></li>
-                    <li><a href="#">Deep Drop Down 3</a></li>
-                    <li><a href="#">Deep Drop Down 4</a></li>
-                    <li><a href="#">Deep Drop Down 5</a></li>
-                    </ul>
-                </li> --}}
-                <li><a href="#">Data Penghuni</a></li>
-                <li><a href="#">Data Kamar</a></li>
-                <li><a href="#">Data Transaksi</a></li>
+                    <li><a href="{{ route("sketch.index") }}">Data Denah</a></li>
+                    {{-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                        <ul>
+                        <li><a href="#">Deep Drop Down 1</a></li>
+                        <li><a href="#">Deep Drop Down 2</a></li>
+                        <li><a href="#">Deep Drop Down 3</a></li>
+                        <li><a href="#">Deep Drop Down 4</a></li>
+                        <li><a href="#">Deep Drop Down 5</a></li>
+                        </ul>
+                    </li> --}}
                 </ul>
             </li>
             <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
@@ -160,49 +157,49 @@
                 <div class="col-lg-3 col-md-4">
                     <div class="icon-box" data-aos="zoom-in" data-aos-delay="50">
                     <i class="ri-store-line" style="color: #ffbb2c;"></i>
-                    <h3><a href="">Gratis listrik & air</a></h3>
+                    <h3><a>Gratis listrik & air</a></h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
                     <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
                     <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
-                    <h3><a href="">Parkir sepeda motor</a></h3>
+                    <h3><a>Parkir sepeda motor</a></h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
                     <div class="icon-box" data-aos="zoom-in" data-aos-delay="150">
                     <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-                    <h3><a href="">Kamar mandi luar</a></h3>
+                    <h3><a>Kamar mandi luar</a></h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
                     <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
                     <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
-                    <h3><a href="">Perabotan lengkap</a></h3>
+                    <h3><a>Perabotan lengkap</a></h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 mt-4">
                     <div class="icon-box" data-aos="zoom-in" data-aos-delay="250">
                     <i class="ri-database-2-line" style="color: #47aeff;"></i>
-                    <h3><a href="">Tempat jemur pakaian</a></h3>
+                    <h3><a>Tempat jemur pakaian</a></h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 mt-4">
                     <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
                     <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
-                    <h3><a href="">Lingkungan yang bersih</a></h3>
+                    <h3><a>Lingkungan yang bersih</a></h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 mt-4">
                     <div class="icon-box" data-aos="zoom-in" data-aos-delay="350">
                     <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-                    <h3><a href="">Keamanan terjaga</a></h3>
+                    <h3><a>Keamanan terjaga</a></h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 mt-4">
                     <div class="icon-box" data-aos="zoom-in" data-aos-delay="400">
                     <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
-                    <h3><a href="">Jam malam khusus tamu</a></h3>
+                    <h3><a>Jam malam khusus tamu</a></h3>
                     </div>
                 </div>
             </div>
@@ -212,43 +209,36 @@
         <!-- ======= Counts Section ======= -->
         <section id="counts" class="counts">
         <div class="container">
-
             <div class="row" data-aos="fade-up">
-
-            <div class="col-lg-3 col-md-6">
-                <div class="count-box">
-                <i class="bi bi-emoji-smile"></i>
-                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                <p>Jumlah kamar</p>
+                <div class="col-lg-3 col-md-6">
+                    <div class="count-box">
+                    <i class="bi bi-emoji-smile"></i>
+                    <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Jumlah kamar</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                    <div class="count-box">
+                    <i class="bi bi-journal-richtext"></i>
+                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Jumlah penghuni kos</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                    <div class="count-box">
+                    <i class="bi bi-headset"></i>
+                    <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Jumlah transaksi</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                    <div class="count-box">
+                    <i class="bi bi-people"></i>
+                    <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Jumlah admin kos</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-                <div class="count-box">
-                <i class="bi bi-journal-richtext"></i>
-                <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                <p>Jumlah penghuni kos</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                <div class="count-box">
-                <i class="bi bi-headset"></i>
-                <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-                <p>Jumlah transaksi</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                <div class="count-box">
-                <i class="bi bi-people"></i>
-                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-                <p>Jumlah admin kos</p>
-                </div>
-            </div>
-
-            </div>
-
         </div>
         </section><!-- End Counts Section -->
 
@@ -332,85 +322,6 @@
         </div>
         </section><!-- End Gallery Section -->
 
-        {{-- <!-- ======= Testimonials Section ======= -->
-        <section id="testimonials" class="testimonials">
-        <div class="container">
-
-            <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-            <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                <div class="testimonial-item">
-                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                    <h3>Saul Goodman</h3>
-                    <h4>Ceo &amp; Founder</h4>
-                    <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-                </div><!-- End testimonial item -->
-
-                <div class="swiper-slide">
-                <div class="testimonial-item">
-                    <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                    <h3>Sara Wilsson</h3>
-                    <h4>Designer</h4>
-                    <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-                </div><!-- End testimonial item -->
-
-                <div class="swiper-slide">
-                <div class="testimonial-item">
-                    <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                    <h3>Jena Karlis</h3>
-                    <h4>Store Owner</h4>
-                    <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-                </div><!-- End testimonial item -->
-
-                <div class="swiper-slide">
-                <div class="testimonial-item">
-                    <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                    <h3>Matt Brandon</h3>
-                    <h4>Freelancer</h4>
-                    <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-                </div><!-- End testimonial item -->
-
-                <div class="swiper-slide">
-                <div class="testimonial-item">
-                    <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                    <h3>John Larson</h3>
-                    <h4>Entrepreneur</h4>
-                    <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                </div>
-                </div><!-- End testimonial item -->
-
-            </div>
-            <div class="swiper-pagination"></div>
-            </div>
-
-        </div>
-        </section><!-- End Testimonials Section --> --}}
-
         <!-- ======= Pricing Section ======= -->
         <section id="pricing" class="pricing">
         <div class="container">
@@ -469,58 +380,31 @@
             </div>
 
             <div class="row">
-
-            <div class="col-lg-4" data-aos="fade-right" data-aos-delay="100">
-                <div class="info">
-                <div class="address">
-                    <i class="bi bi-geo-alt"></i>
-                    <h4>Location:</h4>
-                    <p>Jl. Semanggi Barat No.18, Lowokwaru, Malang</p>
-                </div>
-
-                <div class="email">
-                    <i class="bi bi-envelope"></i>
-                    <h4>Email:</h4>
-                    <p>darussaadah@gmail.com</p>
-                </div>
-
-                <div class="phone">
-                    <i class="bi bi-phone"></i>
-                    <h4>Whatsapp:</h4>
-                    <p>+62 813-3498-3535</p>
-                </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
-
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                <div class="col-lg-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="info">
+                        <a href="https://goo.gl/maps/rZ3NnAubTzEPVKN98" target="_blank">
+                            <div class="address">
+                                <i class="bi bi-geo-alt"></i>
+                                <h4>Location:</h4>
+                                <p>Jl. Semanggi Barat No.18, Lowokwaru, Malang</p>
+                            </div>
+                        </a>
+                        <a href="https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=indah.gita89@gmail.com" target="_blank">
+                            <div class="email">
+                                <i class="bi bi-envelope"></i>
+                                <h4>Email:</h4>
+                                <p>darussaadah@gmail.com</p>
+                            </div>
+                        </a>
+                        <a href="http://wa.me/6285157582290&text=Permisi%2C%20apakah%20ada%20kamar%20kos%20yang%20kosong%3F%0A" target="_blank">
+                            <div class="phone">
+                                <i class="bi bi-phone"></i>
+                                <h4>Whatsapp:</h4>
+                                <p>+62 813-3498-3535</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="form-group mt-3">
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group mt-3">
-                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                </div>
-                <div class="my-3">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit">Send Message</button></div>
-                </form>
-
-            </div>
-
             </div>
 
         </div>
@@ -533,48 +417,20 @@
         <div class="footer-top">
             <div class="container">
                 <div class="row justify-content-around">
-
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-12 col-md-6">
                         <div class="footer-info">
-                        <h3>Daarus Sa'adah</h3>
-                        <p class="pb-3"><em>Qui repudiandae et eum dolores alias sed ea. Qui suscipit veniam excepturi quod.</em></p>
-                        <p>
-                            Jl. Semanggi Barat No.18<br>Lowokwaru ,Malang<br>
-                            <strong>Whatsapp:</strong>+62 813-3498-3535<br>
-                            <strong>Email:</strong> darussaadah@gmail.com<br>
-                        </p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
+                            <h3>Daarus Sa'adah</h3>
+                            <p class="pb-3"><em>Cari kos jadi lebih mudah dan tidak perlu keliling kota</em></p>
+                            <p>
+                                Jl. Semanggi Barat No.18<br>Lowokwaru ,Malang<br>
+                                <strong>Whatsapp:</strong>+62 813-3498-3535<br>
+                                <strong>Email:</strong> darussaadah@gmail.com<br>
+                            </p>
+                            <div class="social-links mt-3">
+                                <span >Copyright &copy; Bengak Kos 2022</span>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div>
-
                 </div>
             </div>
         </div>

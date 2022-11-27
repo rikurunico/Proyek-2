@@ -40,7 +40,7 @@ class DormitoryController extends Controller
     {
         return view(DormitoryController::DORMITORY_VIEW["index"], [
             'title' => 'Data Penghuni',
-            'dormitories' => Dormitory::orderBy("name")->paginate(10),
+            'dormitories' => Dormitory::with(["rooms"])->orderBy("name")->paginate(10),
             'dormitory_route' => DormitoryController::DORMITORY_ROUTE
         ]);
     }
@@ -129,7 +129,7 @@ class DormitoryController extends Controller
 
         $validatedData = $request->validate($rulesData);
 
-        Dormitory::where("id", $dormitory->id)->update($validatedData);
+        Dormitory::with(["rooms"])->where("id", $dormitory->id)->update($validatedData);
         return redirect()->route(DormitoryController::DORMITORY_ROUTE["index"])->with('success', 'Data Penghuni berhasil diedit');
     }
 
@@ -141,7 +141,7 @@ class DormitoryController extends Controller
      */
     public function destroy(Dormitory $dormitory)
     {
-        Dormitory::find($dormitory->id)->delete();
+        Dormitory::with(["rooms"])->find($dormitory->id)->delete();
         return redirect()->route(DormitoryController::DORMITORY_ROUTE["index"])->with('success', 'Data Penghuni berhasil dihapus');
     }
 

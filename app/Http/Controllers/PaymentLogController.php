@@ -2,11 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dormitory;
 use App\Models\PaymentLog;
 use Illuminate\Http\Request;
 
 class PaymentLogController extends Controller
 {
+    public const TRANSACTION_ROUTE = [
+        "index" => "transactions.index",
+        "store" => "transactions.store",
+        "create" => "transactions.create",
+        "show" => "transactions.show",
+        "edit" => "transactions.edit",
+        "update" => "transactions.update",
+        "delete" => "transactions.destroy",
+        "trashIndex" => "transactions.trash.index",
+        "trashDetail" => "transactions.trash.detail",
+        "trashRestore" => "transactions.trash.restore",
+        "trashDelete" => "transactions.trash.delete"
+    ];
+
+    public const TRANSACTION_VIEW = [
+        "index" => "dashboard.transaction.index",
+        "create" => "dashboard.transaction.create",
+        "detail" => "dashboard.transaction.detail",
+        "edit" => "dashboard.transaction.edit",
+        "trashIndex" => "dashboard.transaction.trashIndex",
+        "trashDetail" => "dashboard.transaction.trashDetail",
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -14,11 +37,10 @@ class PaymentLogController extends Controller
      */
     public function index()
     {
-        //
-        $paymentLogData = PaymentLog::all();
-        return view('paymentLog.index', [
-            'title' => 'Payment Log',
-            'paymentLogData' => $paymentLogData,
+        return view(PaymentLogController::TRANSACTION_VIEW["index"], [
+            'title' => 'Data Transaksi',
+            'transactions_route' => PaymentLogController::TRANSACTION_ROUTE,
+            'transactions' => PaymentLog::all(),
         ]);
     }
 
@@ -29,11 +51,21 @@ class PaymentLogController extends Controller
      */
     public function create()
     {
-        //
-        $paymentLogData = PaymentLog::all();
-        return view('paymentLog.create', [
-            'title' => 'Create Payment Log',
-            'paymentLogData' => $paymentLogData,
+        $dormitories = Dormitory::with(["rooms"])->get();
+        foreach ($dormitories as $indexdormitory => $dormitory) {
+            if (count($dormitory->rooms) == 0) {
+                unset($dormitories[$indexdormitory]);
+            }
+        }
+        $months = config("app.month.language.indonesian");
+        return view(PaymentLogController::TRANSACTION_VIEW["create"], [
+            'title' => 'Tambah Transaksi',
+            'transactions_route' => PaymentLogController::TRANSACTION_ROUTE,
+            'dormitories_route' => DormitoryController::DORMITORY_ROUTE,
+            'dormitories' => $dormitories,
+            'transactions' => PaymentLog::all(),
+            'month_length' => config("app.month.length"),
+            'months' => config("app.month.language.indonesian"),
         ]);
     }
 

@@ -131,6 +131,12 @@
             max-width: 1000px;
         }
 
+        .room-full{
+            /* background-color: #e80368; */
+            background-color: red;
+            color: white
+        }
+
         /* @media only screen and (max-width: 768px) {
             .sketch {
                 margin-right: 1rem;
@@ -149,27 +155,51 @@
         <div class="d-flex w-100 bg-primary">
             <div class="card shadow border-1 border-primary p-0 w-100">
                 <!-- Card Header - Dropdown -->
-                <div class="card-header py-3">
-                    <h5 class="m-0 font-weight-bold text-primary">Lantai 1</h5>
+                <div class="card-header">
+                    <style>
+                        h5.m-0.text-nowrap.font-weight-bold.text-primary:hover{
+                            color: blue !important;
+                            text-decoration: underline;
+                        }
+                    </style>
+                    <div class="d-flex py-3 w-100 overflow-auto">
+                        <h5 id="l1" role="button" class="m-0 text-nowrap font-weight-bold text-primary me-5">Lantai 1</h5>
+                        <h5 id="l2" role="button" class="m-0 text-nowrap font-weight-bold text-primary me-5">Lantai 2</h5>
+                        <h5 id="l3" role="button" class="m-0 text-nowrap font-weight-bold text-primary">Lantai 3</h5>
+                    </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body sketch-box px-0 px-lg-4">
-                    <div class="sketch px-3 px-lg-0">
+                    <div class="sketch px-3 px-lg-0" id="sketch-canvas">
                         {{-- Row 1 --}}
+                        <div class="row-sketch">
+                            <div class="col-12 d-flex">
+                                <div class="col-10 h-150 box-sketch-center border-sketch">
+                                    Halaman Depan (Rumah) / Parkir
+                                </div>
+                                <div class="col-2 h-150 box-sketch-center border-sketch">
+                                    Toko
+                                </div>
+                            </div>
+                        </div>
+                        {{-- Row 2 --}}
                         <div class="row-sketch">
                             <div class="col-4">
                                 <div class="col-12 d-flex">
                                     <div class="col-10">
-                                        <a id="1" class="col-12 room border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                        Kamar 1
+                                        <div class="col-12 h-200 box-sketch-center border-sketch">
+                                            Garasi
+                                        </div>
+                                        <a id="1" class="col-12 room h-100 border-sketch room-full" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            Kamar 1
                                         </a>
-                                        <a id="2" class="col-12 room border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        <a id="2" class="col-12 room h-100 border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             Kamar 2
                                         </a>
-                                        <a id="3" class="col-12 room border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        <a id="3" class="col-12 room h-100 border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             Kamar 3
                                         </a>
-                                        <a id="4" class="col-12 room border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        <a id="4" class="col-12 room h-100 border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             Kamar 4
                                         </a>
                                     </div>
@@ -180,7 +210,7 @@
                                     </div>
                                 </div>
                                 
-    
+
                                 <div class="col-12 d-flex">
                                     <div class="col-4 h-50 box-sketch-center border-sketch">
                                         Toilet
@@ -196,21 +226,25 @@
                                     Lorong / Jalan
                                 </div>
                             </div>
-                            <div class="col-1 d-flex">
-                                <div class="col-12 h-700 box-sketch-center text-to-bottom border-sketch">
-                                    Lorong / Jalan
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="col-12 h-600 box-sketch-center border-sketch">
-                                    Rumah Admin Kos
-                                </div>
-                                <div class="col-12 h-100 box-sketch-center border-sketch">
-                                    Teras Rumah (Belakang) / Parkir
+                            <div class="col-8">
+                                <div class="col-12 d-flex">
+                                    <div class="col-2 d-flex">
+                                        <div class="col-12 h-700 box-sketch-center text-to-bottom border-sketch">
+                                            Lorong / Jalan / Parkir
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="col-12 h-600 box-sketch-center border-sketch">
+                                            Rumah Admin Kos
+                                        </div>
+                                        <div class="col-12 h-100 box-sketch-center border-sketch">
+                                            Teras Belakang (Rumah) / Parkir
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        {{-- Row 2 --}}
+                        {{-- Row 3 --}}
                         <div class="row-sketch">
                             <div class="col-3">
                                 <div class="col-12 h-75 box-sketch-center border-sketch">
@@ -231,7 +265,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- Row 3 --}}
+                        {{-- Row 4 --}}
                         <div class="row-sketch">
                             <div class="col-9">
                                 <div class="col-12 h-50 box-sketch-center border-sketch">Teras Depan (Kos) / Jalan</div>
@@ -272,43 +306,57 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" id="response">
-
-            </div>
-        </div>
-    </div>
-
-    {{-- <div id="response"></div> --}}
-  
+    {{-- Modal response --}}
+    <div id="response"></div>
 
     {{-- Script Ajax --}}
     <script>
+        // Script Ajax Floor
+        const containersketchcanvas = document.getElementById("sketch-canvas");
+        const headerfloor = document.querySelectorAll("h5.m-0.text-nowrap.font-weight-bold.text-primary");
         const containerresponse = document.getElementById("response");
         const roombox = document.querySelectorAll("a.room.border-sketch");
         let urlajax = "{{ route("sketch.index") }}";
-
-        roombox.forEach(room => {
-            room.addEventListener("click", function () {
-                console.log(room.id);
-                console.log(urlajax + "/" + room.id);
-
+        headerfloor.forEach(floor => {
+            floor.addEventListener("click", function () {
                 const xhr = new XMLHttpRequest();
 
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
-                        containerresponse.innerHTML = xhr.responseText;
+                        containersketchcanvas.innerHTML = xhr.responseText;
                         // console.log(xhr.responseText);
                     }
                 };
 
-                xhr.open("GET", urlajax + "/" + room.id, true);
+                xhr.open("GET", urlajax + "/floor/" + floor.id, true);
 
                 xhr.send();
             });
-        });
+        })
+
+        // Script Ajax Room
+        if (roombox.length > 0) {
+            roombox.forEach(room => {
+                room.addEventListener("click", function () {
+                    
+                    const xhr2 = new XMLHttpRequest();
+                    xhr2.onreadystatechange = function () {
+                        if (xhr2.readyState == 4 && xhr2.status == 200) {
+                            containerresponse.innerHTML = xhr2.responseText;
+                            responsexhr = xhr2.responseText;
+                        }
+                    };
+                    
+                    containerresponse.innerHTML = responsexhr
+                    
+                    xhr2.open("GET", urlajax + "/room/" + room.id, true);
+                    
+                    xhr2.send();
+                });
+            });
+        } else {
+            console.log("Kaga jalan");
+        }
     </script>
 
     {{-- Bootstrap --}}

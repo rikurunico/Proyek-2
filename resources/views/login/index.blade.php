@@ -10,24 +10,6 @@
     </head>
 	<body>
 		<div class="container" id="container">
-			<div class="form-container sign-up-container">
-				{{-- <form action="" method="post">
-					<h1>Sign Up</h1>
-					<div class="social-container">
-						<a onclick="alert('Belum berfungsi')" class="social"><em class="fa fa-facebook"></em></a>
-						<a onclick="alert('Belum berfungsi')" class="social"><em class="fa fa-google"></em></a>
-						<a onclick="alert('Belum berfungsi')" class="social"><em class="fa fa-linkedin"></em></a>
-					</div>
-					<span>Form Registration</span>
-					<input type="text" name="username" placeholder="Username" required/>
-					<input type="email" name="email" placeholder="Email" required/>
-					<input type="password" name="password" placeholder="Password" required/>
-					@if (session()->has("loginError")) 
-						<p class="message-error">{{ session("loginError") }}</p>
-					@endif
-					<button type="submit">SignUp</button>
-				</form> --}}
-			</div>
 			<div class="form-container sign-in-container">
 				<form action="{{ route("login.store") }}" method="post">
 					@csrf
@@ -44,16 +26,16 @@
 						<p class="message-error">{{ session("loginError") }}</p>
 					@endif
 					<a style="cursor: pointer;" onclick="alert('Belum Berfungsi')">Lupa password</a>
-					<button type="submit">Login</button>
+					<div class="button-form">
+						<a href="{{ url("/") }}" class="button-back">
+							<button class="danger" type="button" id="signUp">Kembali</button>
+						</a>
+						<button type="submit">Login</button>
+					</div>
 				</form>
 			</div>
 			<div class="overlay-container">
 				<div class="overlay">
-					{{-- <div class="overlay-panel overlay-left">
-						<h1>Tips</h1>
-						<p>Gunakan lah email yang valid, agar bisa digunakan pada fitur forget password. Buatlah username yang mudah diingat dan tanpa menggunakan spasi, buatlah password dengan kombinasi angka dan huruf agar sulit ditebak</p>
-						<button class="ghost" id="signIn">Sign In</button>
-					</div> --}}
 					<div class="overlay-panel overlay-right">
 						<h1>Tips</h1>
 						<p>Jangan beritahukan data pribadi anda, termasuk username dan password saat menggunakan semua sistem informasi</p>
