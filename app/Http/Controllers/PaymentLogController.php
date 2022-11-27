@@ -77,16 +77,25 @@ class PaymentLogController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $this->validate($request, [
-            'payment_date' => 'required',
-            'status' => 'required',
-            'payment_month' => 'required',
+            'fk_id_dormitory' => 'required',
+            'month_start'   => 'required',
+            'month_end'   => 'required',
+            'proof_payment' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        PaymentLog::create($request->all());
+        $proof_payment = $request->file('proof_payment')->store('proof_payment', 'public');
 
-        return redirect()->route('paymentLog.index')->with('success', 'Payment Log created successfully');
+
+        PaymentLog::create([
+            'dormitory_id' => $request->fk_id_dormitory,
+            'bulan_mulai' => $request->month_start,
+            'bulan_selesai' => $request->month_end,
+            'total_bulan' => $request->month_end - $request->month_start,
+            'bukti_pembayaran' => $proof_payment,
+        ]);
+
+        return redirect()->route('transactions.index')->with('success', 'Payment Log created successfully');
     }
 
     /**

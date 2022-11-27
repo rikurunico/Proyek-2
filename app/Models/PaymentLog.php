@@ -14,8 +14,15 @@ class PaymentLog extends Model
     protected $table = 'payment_logs';
 
     protected $fillable = [
-        'payment_date',
-        'status',
-        'payment_month',
+        'dormitory_id',
+        'total_bulan',
+        'bulan_mulai',
+        'bulan_selesai',
+        'bukti_pembayaran',
     ];
+
+    public function dormitory()
+    {
+        return $this->belongsTo(Dormitory::class, "fk_id_dormitory");
+    }
 }

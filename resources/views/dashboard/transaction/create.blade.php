@@ -29,15 +29,15 @@
 					</div>
 				@enderror
 			</div>
-			<div class="mb-3">
+			{{-- <div class="mb-3">
 				<label for="total_month" class="form-label">Total Bulan Bayar</label>
-				<input type="number" name="room_number" class="form-control @error('room_number') is-invalid @enderror" id="room_number" value="{{ old("room_number") }}" required>
-				@error('room_number')
+				<input type="number" name="total_bulan_bayar" class="form-control @error('total_bulan_bayar') is-invalid @enderror" id="total_bulan_bayar" value="{{ old("total_bulan_bayar") }}" required>
+				@error('total_bulan_bayar')
 					<div class="invalid-feedback">
 						{{ $message }}
 					</div>
 				@enderror
-			</div>
+			</div> --}}
 			<style>
 				.w-100{
 					width: 100% !important;

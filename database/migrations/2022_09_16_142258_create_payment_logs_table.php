@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('payment_logs', function (Blueprint $table) {
             $table->id();
-            $table->date('payment_date');
-            $table->string('status');
-            $table->integer('payment_month');
+            //relation to dormitory
+            $table->foreignId('dormitory_id')->constrained('dormitories')->cascadeOnDelete();
+            $table->string('total_bulan');
+            $table->string('bulan_mulai');
+            $table->string('bulan_selesai');
+            $table->string('bukti_pembayaran');
             $table->timestamps();
             $table->softDeletes();
         });
