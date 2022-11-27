@@ -148,7 +148,7 @@ class PaymentLogController extends Controller
 
         PaymentLog::find($paymentLog->id)->update($request->all());
 
-        return redirect()->route('paymentLog.index')->with('success', 'Payment Log updated successfully');
+        return redirect()->route('transactions.index')->with('success', 'Payment Log updated successfully');
     }
 
     /**
@@ -161,6 +161,6 @@ class PaymentLogController extends Controller
     {
         //
         PaymentLog::find($paymentLog->id)->delete();
-        return redirect()->route('paymentLog.index')->with('success', 'Payment Log deleted successfully');
+        return redirect()->route('transactions.index')->with('success', 'Payment Log deleted successfully');
     }
 }
