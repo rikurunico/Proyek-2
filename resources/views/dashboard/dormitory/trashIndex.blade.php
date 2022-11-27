@@ -13,16 +13,6 @@
         <div class="table-responsive mb-5">
             <table class="table table-striped table-sm" >
                 <caption></caption>
-                <style>
-                    table.table thead tr th:nth-child(1)    , 
-                    table.table tbody tr td:nth-child(1){
-                        text-align: center
-                    }
-
-                    table.table tbody tr td{
-                        vertical-align: middle !important;
-                    }
-                </style>
                 <thead>
                     <tr>
                         <th scope="col">Nomer</th>

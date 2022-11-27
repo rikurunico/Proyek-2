@@ -341,7 +341,7 @@
                         <li class="na">Massa ultricies mi</li>
                     </ul> --}}
                     <div class="btn-wrap">
-                        <a href="#" class="btn-buy">Pesan Sekarang</a>
+                        <a href="https://api.whatsapp.com/send?phone=6285157582290&text=Permisi%2C%20apakah%20ada%20kamar%20kos%20yang%20kosong%3F%0A" target="_blank" class="btn-buy">Pesan Sekarang</a>
                     </div>
                     </div>
                 </div>
@@ -358,7 +358,7 @@
                         <li class="na">Massa ultricies mi</li>
                     </ul> --}}
                     <div class="btn-wrap">
-                        <a href="#" class="btn-buy">Pesan Sekarang</a>
+                        <a href="https://api.whatsapp.com/send?phone=6285157582290&text=Permisi%2C%20apakah%20ada%20kamar%20kos%20yang%20kosong%3F%0A" target="_blank" class="btn-buy">Pesan Sekarang</a>
                     </div>
                     </div>
                 </div>

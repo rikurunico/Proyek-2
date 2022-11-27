@@ -42,9 +42,7 @@ Route::get('/sketch/floor/{floor_number}', function ($floor_number) {
     if (!in_array($floor_number, ["l1", "l2", "l3"])) {   
         return "<h1 class='text-danger'>No Data</h1>";
     }
-    return view('sketch.ajax.' . $floor_number, [
-        "active" => $floor_number
-    ]);
+    return view('sketch.ajax.' . $floor_number);
 })->name("sketch.ajax.floor");
 
 Route::get('/login', [LoginController::class, "index"])->middleware("guest")->name("login");
