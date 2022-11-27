@@ -90,11 +90,12 @@ input {
 
 .container {
     background-color: #fff;
+    display: flex;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
     overflow: hidden;
-    width: 768px;
+    width: 750px;
     max-width: 100%;
     min-height: 480px;
 }
@@ -181,7 +182,12 @@ input {
 
 .message-error {
     margin: 0 0 1rem;
-    color: red;
+    color: #e80368;
+}
+
+.danger {
+    background-color: #e80368;
+    color: white;
 }
 
 .container.right-panel-active .overlay {
@@ -239,4 +245,54 @@ button[type="submit"],
 button#signUp,
 button#signIn {
     cursor: pointer;
+}
+
+.button-back {
+    margin: 0 !important;
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        padding: 0 1rem;
+    }
+
+    .overlay-container {
+        display: none !important;
+    }
+
+    .container {
+        justify-content: center;
+    }
+
+    .sign-in-container {
+        width: 100%;
+        position: static;
+    }
+
+    .button-form {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .button-back {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .button-form {
+        flex-direction: column;
+    }
+
+    .button-back {
+        width: 100%;
+        margin-top: 1rem !important;
+        order: 2;
+    }
+    .button-back button {
+        width: 100%;
+    }
 }

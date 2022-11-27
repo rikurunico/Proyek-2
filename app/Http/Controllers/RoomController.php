@@ -55,13 +55,11 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $dormitories = Dormitory::all();
-        //
         return view(RoomController::ROOM_VIEW["create"], [
             'title' => 'Tambah Kamar',
             'rooms_route' => RoomController::ROOM_ROUTE,
             'dormitories_route' => DormitoryController::DORMITORY_ROUTE,
-            'dormitories' => $dormitories
+            'dormitories' => Dormitory::all()
         ]);
     }
 

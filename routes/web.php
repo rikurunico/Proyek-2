@@ -30,12 +30,21 @@ Route::get('/sketch', function () {
     ]);
 })->name("sketch.index");
 
-Route::get('/sketch/{room_number}', function ($room_number) {
-    return view('ajax.modalsketch', [
+Route::get('/sketch/room/{room_number}', function ($room_number) {
+    return view('sketch.ajax.modalsketch', [
         "room" => Room::with(["dormitory", "roomimages"])->where("room_number", $room_number)->first(),
         "room_number" => $room_number
     ]);
-})->name("sketch.ajax");
+})->name("sketch.ajax.room");
+
+Route::get('/sketch/floor/{floor_number}', function ($floor_number) {
+    if (!in_array($floor_number, ["l1", "l2", "l3"])) {   
+        return "<h1 class='text-danger'>No Data</h1>";
+    }
+    return view('sketch.ajax.' . $floor_number, [
+        "active" => $floor_number
+    ]);
+})->name("sketch.ajax.floor");
 
 Route::get('/login', [LoginController::class, "index"])->middleware("guest")->name("login");
 Route::post('/login', [LoginController::class, "store"])->name("login.store");
