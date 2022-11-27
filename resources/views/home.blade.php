@@ -7,6 +7,20 @@
     <link rel="shortcut icon" href="{{ asset('/assets/img/favicon.ico') }}" type="image/x-icon">
 
     <title>Daarus Sa'adah</title>
+    <meta name="description" content="Kos Daarus Sa'adah dekat kampus polinema">
+    {{-- <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34="> --}}
+    <meta name="robots" content="noindex,nofollow">
+
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EKQ9QXK24V"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-EKQ9QXK24V');
+    </script>
+
     <!-- Favicons -->
     {{-- <link href={{ asset("assets/img/favicon.png") }} rel="icon">
     <link href={{ asset("assets/img/apple-touch-icon.png") }} rel="apple-touch-icon"> --}}
