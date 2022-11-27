@@ -2,10 +2,10 @@
 
 @section('container')
 	<h2 class="mb-3 fs-sm-3">Tambah Data Kamar</h2>
-	<div class="col-md-8 p-0 mb-3">
-		<a class="btn btn-primary w-sm-100" href="{{ route($rooms_route["index"]) }}">Kembali ke Data Tabel</a>
+	<div class="col-lg-8 p-0 mb-3">
+		<a class="btn btn-primary w-100 w-lg-auto" href="{{ route($rooms_route["index"]) }}">Kembali ke Data Tabel</a>
 	</div>
-	<div class="col-md-8 mb-5 p-0">
+	<div class="col-lg-8 mb-5 p-0">
 		<form action="{{ route($rooms_route["store"]) }}" method="post" enctype="multipart/form-data">
 			@csrf
 			<div class="mb-3">

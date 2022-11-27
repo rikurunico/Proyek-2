@@ -247,78 +247,75 @@
         <div class="container">
 
             <div class="section-title" data-aos="fade-up">
-            <h2>Gallery</h2>
-            <p>Check our Gallery</p>
+                <h2>Gambar Kos</h2>
+                <p>Preview kos Daarus Sa'adah</p>
             </div>
 
             <div class="row g-0" data-aos="fade-left">
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                <a href="assets/img/gallery/gallery-1.jpg" class="gallery-lightbox">
-                    <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
-                </a>
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                    <a href="{{ asset("img/bg-kos1.jpg") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos1.jpg") }}" alt="" class="img-fluid">
+                    </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150">
-                <a href="assets/img/gallery/gallery-2.jpg" class="gallery-lightbox">
-                    <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
-                </a>
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150">
+                    <a href="{{ asset("img/bg-kos2.jpg") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos2.jpg") }}" alt="" class="img-fluid">
+                    </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                <a href="assets/img/gallery/gallery-3.jpg" class="gallery-lightbox">
-                    <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
-                </a>
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                    <a href="{{ asset("img/bg-kos3.jpg") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos3.jpg") }}" alt="" class="img-fluid">
+                    </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="250">
-                <a href="assets/img/gallery/gallery-4.jpg" class="gallery-lightbox">
-                    <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
-                </a>
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="250">
+                    <a href="{{ asset("img/bg-kos4.jpg") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos4.jpg") }}" alt="" class="img-fluid">
+                    </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
-                <a href="assets/img/gallery/gallery-5.jpg" class="gallery-lightbox">
-                    <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
-                </a>
+                {{-- <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                    <a href="assets/img/gallery/gallery-5.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
+                    </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="350">
-                <a href="assets/img/gallery/gallery-6.jpg" class="gallery-lightbox">
-                    <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
-                </a>
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="350">
+                    <a href="assets/img/gallery/gallery-6.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
+                    </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
-                <a href="assets/img/gallery/gallery-7.jpg" class="gallery-lightbox">
-                    <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
-                </a>
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                    <a href="assets/img/gallery/gallery-7.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
+                    </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450">
-                <a href="assets/img/gallery/gallery-8.jpg" class="gallery-lightbox">
-                    <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450">
+                    <a href="assets/img/gallery/gallery-8.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
+                    </a>
+                    </div>
+                </div> --}}
             </div>
-
-            </div>
-
         </div>
         </section><!-- End Gallery Section -->
 
@@ -375,8 +372,8 @@
         <div class="container">
 
             <div class="section-title" data-aos="fade-up">
-            <h2>Contact</h2>
-            <p>Contact Us</p>
+            <h2>Kontak Kami</h2>
+            <p>Kontak kami melalui platform dibawah ini</p>
             </div>
 
             <div class="row">
@@ -389,14 +386,14 @@
                                 <p>Jl. Semanggi Barat No.18, Lowokwaru, Malang</p>
                             </div>
                         </a>
-                        <a href="https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=indah.gita89@gmail.com" target="_blank">
+                        <a href="https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=service@daarus-saadah.my.id" target="_blank">
                             <div class="email">
                                 <i class="bi bi-envelope"></i>
                                 <h4>Email:</h4>
-                                <p>darussaadah@gmail.com</p>
+                                <p>service@daarus-saadah.my.id</p>
                             </div>
                         </a>
-                        <a href="http://wa.me/6285157582290&text=Permisi%2C%20apakah%20ada%20kamar%20kos%20yang%20kosong%3F%0A" target="_blank">
+                        <a href="https://api.whatsapp.com/send?phone=6285157582290&text=Permisi%2C%20apakah%20ada%20kamar%20kos%20yang%20kosong%3F%0A" target="_blank">
                             <div class="phone">
                                 <i class="bi bi-phone"></i>
                                 <h4>Whatsapp:</h4>
@@ -424,7 +421,7 @@
                             <p>
                                 Jl. Semanggi Barat No.18<br>Lowokwaru ,Malang<br>
                                 <strong>Whatsapp:</strong>+62 813-3498-3535<br>
-                                <strong>Email:</strong> darussaadah@gmail.com<br>
+                                <strong>Email:</strong> service@daarus-saadah.my.id<br>
                             </p>
                             <div class="social-links mt-3">
                                 <span >Copyright &copy; Bengak Kos 2022</span>

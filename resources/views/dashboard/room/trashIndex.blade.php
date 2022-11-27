@@ -26,7 +26,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Nomer Kamar</th>
-                        <th scope="col">Nama Penghuni Kamar</th>
+                        <th scope="col">Nama Penghuni</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
