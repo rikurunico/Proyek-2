@@ -17,7 +17,7 @@
                 <div class="col-12 h-200 box-sketch-center border-sketch">
                     Garasi
                 </div>
-                <a id="1" class="col-12 room h-100 border-sketch room-full" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <a id="1" class="col-12 room h-100 border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Kamar 1
                 </a>
                 <a id="2" class="col-12 room h-100 border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -127,5 +127,3 @@
         </div>
     </div>
 </div>
-
-

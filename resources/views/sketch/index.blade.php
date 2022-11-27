@@ -83,8 +83,16 @@
             height: 100px !important;
         }
 
+        .h-125{
+            height: 125px !important;
+        }
+
         .h-150{
             height: 150px !important;
+        }
+
+        .h-175{
+            height: 175px !important;
         }
 
         .h-200{
@@ -111,8 +119,20 @@
             height: 400px !important;
         }
 
+        .h-450{
+            height: 450px !important;
+        }
+
         .h-500{
             height: 500px !important;
+        }
+
+        .h-525{
+            height: 525px !important;
+        }
+
+        .h-550{
+            height: 550px !important;
         }
 
         .h-600{
@@ -121,6 +141,10 @@
 
         .h-700{
             height: 700px !important;
+        }
+
+        .h-850{
+            height: 850px !important;
         }
 
         .border-red{
@@ -161,11 +185,16 @@
                             color: blue !important;
                             text-decoration: underline;
                         }
+                        h5.m-0.text-nowrap.font-weight-bold.text-primary.active{
+                            color: red !important;
+                            text-decoration: underline;
+                        }
                     </style>
                     <div class="d-flex py-3 w-100 overflow-auto">
                         <h5 id="l1" role="button" class="m-0 text-nowrap font-weight-bold text-primary me-5">Lantai 1</h5>
                         <h5 id="l2" role="button" class="m-0 text-nowrap font-weight-bold text-primary me-5">Lantai 2</h5>
-                        <h5 id="l3" role="button" class="m-0 text-nowrap font-weight-bold text-primary">Lantai 3</h5>
+                        <h5 id="l3" role="button" class="m-0 text-nowrap font-weight-bold text-primary me-5">Lantai 3</h5>
+                        <h5 id="l4" role="button" class="m-0 text-nowrap font-weight-bold text-primary">Lantai 4</h5>
                     </div>
                 </div>
                 <!-- Card Body -->
@@ -190,7 +219,7 @@
                                         <div class="col-12 h-200 box-sketch-center border-sketch">
                                             Garasi
                                         </div>
-                                        <a id="1" class="col-12 room h-100 border-sketch room-full" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        <a id="1" class="col-12 room h-100 border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             Kamar 1
                                         </a>
                                         <a id="2" class="col-12 room h-100 border-sketch" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -306,25 +335,55 @@
         </div>
     </div>
 
-    {{-- Modal response --}}
-    <div id="response"></div>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" id="response">
+        </div>
+    </div>
 
-    {{-- Script Ajax --}}
+    <!-- Script -->
     <script>
-        // Script Ajax Floor
+        // Get dom element
+        let containerresponse = document.getElementById("response");
+        let roombox = document.querySelectorAll("a.room.border-sketch");
         const containersketchcanvas = document.getElementById("sketch-canvas");
         const headerfloor = document.querySelectorAll("h5.m-0.text-nowrap.font-weight-bold.text-primary");
-        const containerresponse = document.getElementById("response");
-        const roombox = document.querySelectorAll("a.room.border-sketch");
         let urlajax = "{{ route("sketch.index") }}";
+
+        headerfloor[0].classList.add("active");
+
+        function roomboxmodal() {
+            roombox.forEach(room => {
+                room.addEventListener("click", function () {
+                    const xhrroom = new XMLHttpRequest();
+                    xhrroom.onreadystatechange = function () {
+                        if (xhrroom.readyState == 4 && xhrroom.status == 200) {
+                            containerresponse.innerHTML = xhrroom.responseText;
+                        }
+                    };
+                    
+                    xhrroom.open("GET", urlajax + "/room/" + room.id, true);
+                    
+                    xhrroom.send();
+                });
+            });
+        }
+
         headerfloor.forEach(floor => {
             floor.addEventListener("click", function () {
+                // Script active link floor
+                let floorActive = document.querySelector("h5.m-0.text-nowrap.font-weight-bold.text-primary.active")
+                floorActive.classList.remove("active");
+                floor.classList.toggle("active");
+                
+                // Script Ajax Floor
                 const xhr = new XMLHttpRequest();
 
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         containersketchcanvas.innerHTML = xhr.responseText;
-                        // console.log(xhr.responseText);
+                        roombox = document.querySelectorAll("a.room.border-sketch");
+                        roomboxmodal();
                     }
                 };
 
@@ -334,29 +393,8 @@
             });
         })
 
-        // Script Ajax Room
-        if (roombox.length > 0) {
-            roombox.forEach(room => {
-                room.addEventListener("click", function () {
-                    
-                    const xhr2 = new XMLHttpRequest();
-                    xhr2.onreadystatechange = function () {
-                        if (xhr2.readyState == 4 && xhr2.status == 200) {
-                            containerresponse.innerHTML = xhr2.responseText;
-                            responsexhr = xhr2.responseText;
-                        }
-                    };
-                    
-                    containerresponse.innerHTML = responsexhr
-                    
-                    xhr2.open("GET", urlajax + "/room/" + room.id, true);
-                    
-                    xhr2.send();
-                });
-            });
-        } else {
-            console.log("Kaga jalan");
-        }
+        roomboxmodal();
+        
     </script>
 
     {{-- Bootstrap --}}
