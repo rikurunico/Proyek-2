@@ -23,6 +23,6 @@ class PaymentLog extends Model
 
     public function dormitory()
     {
-        return $this->belongsTo(Dormitory::class, "fk_id_dormitory");
+        return $this->belongsTo(Dormitory::class, "dormitory_id");
     }
 }

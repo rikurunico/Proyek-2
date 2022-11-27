@@ -37,16 +37,20 @@
                 <thead>
                     <tr>
                         <th scope="col">Nomer Kamar</th>
-                        <th scope="col">Nama Penghuni Kamar</th>
+                        <th scope="col">Nama Penghuni</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($transactions as $transaction)        
-                        
+                        @dd($transaction ->dormitory_id->name)
                         <tr>
-                            <td>{{ $transaction->room_number }}</td>
-                            <td>{!! $transaction->name ?? '<i class="text-danger">Tidak Ada Penghuni</i>'!!}</td>
+                            <td>{{$transaction ->dormitory_id->name}}</td>
+                            <td>{{$transaction ->total_bulan}}</td>
+                            <td>{{$transaction ->bulan_mulai}}</td>
+                            <td>{{$transaction ->bulan_selesai}}</td>
+                            <td>{{$transaction ->bukti_pembayaran}}</td>
+
                             <td class="d-flex">
                                 <a href="{{ route($transactions_route["show"], $transaction->id) }}" class="btn btn-primary mr-2">Detail</a>
                                 <a href="{{ route($transactions_route["edit"], $transaction->id) }}" class="btn btn-warning mr-2">Edit</a>

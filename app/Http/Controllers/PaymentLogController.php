@@ -40,7 +40,7 @@ class PaymentLogController extends Controller
         return view(PaymentLogController::TRANSACTION_VIEW["index"], [
             'title' => 'Data Transaksi',
             'transactions_route' => PaymentLogController::TRANSACTION_ROUTE,
-            'transactions' => PaymentLog::all(),
+            'transactions' => PaymentLog::with('dormitory')->paginate(10),
         ]);
     }
 
