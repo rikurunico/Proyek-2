@@ -29,7 +29,7 @@
                             <td>{{ $dormitory->name }}</td>
                             <td>{{ $dormitory->address }}</td>
                             <td>{{ $dormitory->phone_number }}</td>
-                            <td class="d-flex">
+                            <td class="d-flex justify-content-center">
                                 <a href="{{ route($dormitory_route["trashDetail"], $dormitory->id) }}" class="btn btn-primary mr-2">Detail</a>
                                 <a href="{{ route($dormitory_route["trashRestore"], $dormitory->id) }}" class="btn btn-warning mr-2" onclick="return confirm('Restore data {{ $dormitory->name }}, Konfirmasi ?')" >Restore</a>
                                 <form action="{{ route($dormitory_route["trashDelete"], $dormitory->id) }}" class="d-inline" method="post">

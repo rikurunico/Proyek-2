@@ -37,10 +37,16 @@ class PaymentLogController extends Controller
      */
     public function index()
     {
+        $transactions = PaymentLog::with('dormitory')->paginate(10);
+        $months = config("app.month.language.indonesian");
+        foreach ($transactions as $transaction) {
+            $transaction["bulan_mulai"] = $months[$transaction["bulan_mulai"]-1]["name"];
+            $transaction["bulan_selesai"] = $months[$transaction["bulan_selesai"]-1]["name"];
+        }
         return view(PaymentLogController::TRANSACTION_VIEW["index"], [
             'title' => 'Data Transaksi',
             'transactions_route' => PaymentLogController::TRANSACTION_ROUTE,
-            'transactions' => PaymentLog::with('dormitory')->paginate(10),
+            'transactions' => $transactions,
         ]);
     }
 
@@ -57,7 +63,6 @@ class PaymentLogController extends Controller
                 unset($dormitories[$indexdormitory]);
             }
         }
-        $months = config("app.month.language.indonesian");
         return view(PaymentLogController::TRANSACTION_VIEW["create"], [
             'title' => 'Tambah Transaksi',
             'transactions_route' => PaymentLogController::TRANSACTION_ROUTE,

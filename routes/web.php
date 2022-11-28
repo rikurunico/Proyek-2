@@ -7,7 +7,10 @@ use App\Http\Controllers\PaymentLogController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageRoomController;
+use App\Models\Dormitory;
+use App\Models\PaymentLog;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +25,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        'total_dormitories' => count(Dormitory::all()),
+        'total_rooms' => count(Room::all()),
+        'total_transactions' => count(PaymentLog::all()),
+        'total_users' => count(User::all())
+    ]);
 })->name("home");
 
 Route::get('/sketch', function () {

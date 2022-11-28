@@ -53,13 +53,13 @@
                             <td>{{ $dormitory->name }}</td>
                             <td>{{ $dormitory->address }}</td>
                             <td>{{ $dormitory->phone_number }}</td>
-                            <td class="d-flex">
+                            <td class="d-flex justify-content-center">
                                 <a href="{{ route($dormitory_route["show"], $dormitory->id) }}" class="btn btn-primary mr-2">Detail</a>
                                 <a href="{{ route($dormitory_route["edit"], $dormitory->id) }}" class="btn btn-warning mr-2">Edit</a>
                                 <form action="{{ route($dormitory_route["delete"], $dormitory->id) }}" class="d-inline" method="post">
                                     @csrf
                                     @method("delete")
-                                    <button onclick="return confirm('Konfirmasi Penghapusanx1')" class="btn btn-danger" >Hapus</button>
+                                    <button onclick="return confirm('Konfirmasi hapus data ?')" class="btn btn-danger" >Hapus</button>
                                 </form>
                             </td>
                         </tr>

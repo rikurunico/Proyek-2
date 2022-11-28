@@ -31,27 +31,30 @@
                     }
 
                     table.table tbody tr td{
+                        text-align: center !important;
                         vertical-align: middle !important;
                     }
                 </style>
                 <thead>
                     <tr>
-                        <th scope="col">Nomer Kamar</th>
-                        <th scope="col">Nama Penghuni</th>
-                        <th scope="col">Aksi</th>
+                        <th scope="col">Nomer Kamar & Penghuni</th>
+                        <th scope="col">Total Bulan Bayar</th>
+                        <th scope="col">Bulan Mulai</th>
+                        <th scope="col">Bulan Selesai</th>
+                        <th scope="col">Bukti Transfer</th>
+                        {{-- <th scope="col">Aksi</th> --}}
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($transactions as $transaction)        
-                        @dd($transaction ->dormitory_id->name)
+                        {{-- @dd($transaction->dormitory->name) --}}
                         <tr>
-                            <td>{{$transaction ->dormitory_id->name}}</td>
-                            <td>{{$transaction ->total_bulan}}</td>
-                            <td>{{$transaction ->bulan_mulai}}</td>
-                            <td>{{$transaction ->bulan_selesai}}</td>
-                            <td>{{$transaction ->bukti_pembayaran}}</td>
-
-                            <td class="d-flex">
+                            <td>{{ $transaction->dormitory->name }} (Kamar {{ $transaction->dormitory->rooms[0]->room_number }})</td>
+                            <td>{{ $transaction->total_bulan }}</td>
+                            <td>{{ $transaction->bulan_mulai }}</td>
+                            <td>{{ $transaction->bulan_selesai }}</td>
+                            <td><img width="300" src="{{ asset("storage/" . $transaction ->bukti_pembayaran) }}" alt=""></td>
+                            {{-- <td class="d-flex">
                                 <a href="{{ route($transactions_route["show"], $transaction->id) }}" class="btn btn-primary mr-2">Detail</a>
                                 <a href="{{ route($transactions_route["edit"], $transaction->id) }}" class="btn btn-warning mr-2">Edit</a>
                                 <form action="{{ route($transactions_route["delete"], $transaction->id) }}" class="d-inline" method="post">
@@ -59,7 +62,7 @@
                                     @method("delete")
                                     <button onclick="return confirm('Konfirmasi')" class="btn btn-danger">Hapus</button>
                                 </form>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
