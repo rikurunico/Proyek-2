@@ -24,8 +24,8 @@
                     @foreach ($rooms as $room)
                         <tr>
                             <td>{{ $room->room_number }}</td>
-                            <td>{!! $room->dormitory->name ?? '<i class="text-danger">Tidak Ada Penghuni</i>'!!}</td>
-                            <td class="d-flex">
+                            <td>{!! $room->dormitory->name ?? '<b class="text-danger">-</b>' !!}</td>
+                            <td class="d-flex justify-content-center">
                                 <a href="{{ route($rooms_route["trashDetail"], $room->id) }}" class="btn btn-primary mr-2">Detail</a>
                                 <a href="{{ route($rooms_route["trashRestore"], $room->id) }}" class="btn btn-warning mr-2" onclick="return confirm('Restore data kamar nomer {{ $room->room_number }}, Konfirmasi ?')" >Restore</a>
                                 <form action="{{ route($rooms_route["trashDelete"], $room->id) }}" class="d-inline" method="post">

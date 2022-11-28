@@ -227,28 +227,28 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="count-box">
                     <i class="bi bi-emoji-smile"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="{{ $total_rooms }}" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Jumlah kamar</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                     <div class="count-box">
                     <i class="bi bi-journal-richtext"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="{{ $total_dormitories }}" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Jumlah penghuni kos</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                     <div class="count-box">
                     <i class="bi bi-headset"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="{{ $total_transactions }}" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Jumlah transaksi</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                     <div class="count-box">
                     <i class="bi bi-people"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="{{ $total_users }}" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Jumlah admin kos</p>
                     </div>
                 </div>
@@ -268,67 +268,99 @@
             <div class="row g-0" data-aos="fade-left">
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                    <a href="{{ asset("img/bg-kos1.jpg") }}" class="gallery-lightbox">
-                        <img src="{{ asset("img/bg-kos1.jpg") }}" alt="" class="img-fluid">
+                    <a href="{{ asset("img/bg-kos1.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos1.webp") }}" loading="lazy" alt="" class="img-fluid">
                     </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150">
-                    <a href="{{ asset("img/bg-kos2.jpg") }}" class="gallery-lightbox">
-                        <img src="{{ asset("img/bg-kos2.jpg") }}" alt="" class="img-fluid">
+                    <a href="{{ asset("img/bg-kos2.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos2.webp") }}" loading="lazy" alt="" class="img-fluid">
                     </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                    <a href="{{ asset("img/bg-kos3.jpg") }}" class="gallery-lightbox">
-                        <img src="{{ asset("img/bg-kos3.jpg") }}" alt="" class="img-fluid">
+                    <a href="{{ asset("img/bg-kos3.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos3.webp") }}" loading="lazy" alt="" class="img-fluid">
                     </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item" data-aos="zoom-in" data-aos-delay="250">
-                    <a href="{{ asset("img/bg-kos4.jpg") }}" class="gallery-lightbox">
-                        <img src="{{ asset("img/bg-kos4.jpg") }}" alt="" class="img-fluid">
+                    <a href="{{ asset("img/bg-kos4.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos4.webp") }}" loading="lazy" alt="" class="img-fluid">
                     </a>
                     </div>
                 </div>
 
-                {{-- <div class="col-lg-3 col-md-4">
+                <div class="col-lg-3 col-md-4">
                     <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
-                    <a href="assets/img/gallery/gallery-5.jpg" class="gallery-lightbox">
-                        <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
+                    <a href="{{ asset("img/bg-kos5.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos5.webp") }}" loading="lazy" alt="" class="img-fluid">
                     </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item" data-aos="zoom-in" data-aos-delay="350">
-                    <a href="assets/img/gallery/gallery-6.jpg" class="gallery-lightbox">
-                        <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
+                    <a href="{{ asset("img/bg-kos6.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos6.webp") }}" loading="lazy" alt="" class="img-fluid">
                     </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
-                    <a href="assets/img/gallery/gallery-7.jpg" class="gallery-lightbox">
-                        <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
+                    <a href="{{ asset("img/bg-kos7.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos7.webp") }}" loading="lazy" alt="" class="img-fluid">
                     </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450">
-                    <a href="assets/img/gallery/gallery-8.jpg" class="gallery-lightbox">
-                        <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
+                    <a href="{{ asset("img/bg-kos8.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos8.webp") }}" loading="lazy" alt="" class="img-fluid">
                     </a>
                     </div>
-                </div> --}}
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450">
+                    <a href="{{ asset("img/bg-kos9.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos9.webp") }}" loading="lazy" alt="" class="img-fluid">
+                    </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450">
+                    <a href="{{ asset("img/bg-kos10.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos10.webp") }}" loading="lazy" alt="" class="img-fluid">
+                    </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450">
+                    <a href="{{ asset("img/bg-kos11.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos11.webp") }}" loading="lazy" alt="" class="img-fluid">
+                    </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450">
+                    <a href="{{ asset("img/bg-kos6.webp") }}" class="gallery-lightbox">
+                        <img src="{{ asset("img/bg-kos6.webp") }}" loading="lazy" alt="" class="img-fluid">
+                    </a>
+                    </div>
+                </div>
             </div>
         </div>
         </section><!-- End Gallery Section -->

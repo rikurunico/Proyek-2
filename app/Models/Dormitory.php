@@ -26,6 +26,6 @@ class Dormitory extends Model
 
     public function paymentLogs()
     {
-        return $this->hasMany(PaymentLog::class, "fk_id_dormitory");
+        return $this->hasMany(PaymentLog::class, "dormitory_id");
     }
 }

@@ -14,7 +14,7 @@
     <div class="row">
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="#" class="card border-left-primary shadow h-100 py-2">
+            <a href="{{ route("rooms.index") }}" class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -22,7 +22,7 @@
                                 Data Kamar
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                Total = {{ "50" }}
+                                Total = {{ $total_rooms }}
                             </div>
                         </div>
                         <div class="col-auto">
@@ -35,12 +35,12 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="{{ url("table/supplier") }}" class="card border-left-success shadow h-100 py-2">
+            <a href="{{ route("dormitory.index") }}" class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Data Warga</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Total = {{ "30" }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Total = {{ $total_dormitories }}</div>
                         </div>
                         <div class="col-auto">
                             <em class="fas fa-dollar-sign fa-2x text-gray-300"></em>
@@ -52,7 +52,7 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="{{ url("table/pelanggan") }}" class="card border-left-info shadow h-100 py-2">
+            <a href="{{ route("transactions.index") }}" class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -62,7 +62,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                        Total = {{ "500" }}
+                                        Total = {{ $total_transactions }}
                                     </div>
                                 </div>
                             </div>
@@ -77,15 +77,15 @@
 
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="{{ url("table/pegawai") }}" class="card border-left-warning shadow h-100 py-2">
+            <a href="{{ route("users.index") }}" class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Data Dormirty
+                                Data Admin Kos
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                All Data = {{ "30" }}
+                                All Data = {{ $total_users }}
                             </div>
                         </div>
                         <div class="col-auto">
@@ -99,7 +99,7 @@
 
     <!-- Content Row -->
 
-    <div class="row">
+    {{-- <div class="row">
         <!-- Area Chart -->
         <div class="col-xl-8 col-lg-7">
             <div href="#" class="card shadow mb-4">
@@ -243,7 +243,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 @endsection

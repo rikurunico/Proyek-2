@@ -49,14 +49,14 @@
                         
                         <tr>
                             <td>{{ $room->room_number }}</td>
-                            <td>{!! $room->dormitory->name ?? '<i class="text-danger">Tidak Ada Penghuni</i>'!!}</td>
-                            <td class="d-flex">
+                            <td>{!! $room->dormitory->name ?? '<b class="text-danger">-</b>' !!}</td>
+                            <td class="d-flex justify-content-center">
                                 <a href="{{ route($rooms_route["show"], $room->id) }}" class="btn btn-primary mr-2">Detail</a>
                                 <a href="{{ route($rooms_route["edit"], $room->id) }}" class="btn btn-warning mr-2">Edit</a>
                                 <form action="{{ route($rooms_route["delete"], $room->id) }}" class="d-inline" method="post">
                                     @csrf
                                     @method("delete")
-                                    <button onclick="return confirm('Konfirmasi')" class="btn btn-danger">Hapus</button>
+                                    <button onclick="return confirm('Konfirmasi hapus data ?')" class="btn btn-danger">Hapus</button>
                                 </form>
                             </td>
                         </tr>
