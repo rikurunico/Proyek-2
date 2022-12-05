@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone_number')->unique();
+            $table->unsignedBigInteger('fk_id_dormitory')->nullable();
+            $table->foreign("fk_id_dormitory")->references("id")->on("dormitories")->nullOnDelete();
             $table->softDeletes();
         });
     }

@@ -37,32 +37,32 @@
                 </style>
                 <thead>
                     <tr>
-                        <th scope="col">Nomer Kamar & Penghuni</th>
-                        <th scope="col">Total Bulan Bayar</th>
-                        <th scope="col">Bulan Mulai</th>
-                        <th scope="col">Bulan Selesai</th>
-                        <th scope="col">Bukti Transfer</th>
-                        {{-- <th scope="col">Aksi</th> --}}
+                        <th class="text-nowrap" scope="col">Tanggal Bayar</th>
+                        <th class="text-nowrap" scope="col">Nomer Kamar & Penghuni</th>
+                        <th class="text-nowrap" scope="col">Total Bulan Bayar</th>
+                        <th class="text-nowrap" scope="col">Durasi Bulan</th>
+                        <th class="text-nowrap" scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($transactions as $transaction)        
                         {{-- @dd($transaction->dormitory->name) --}}
                         <tr>
+                            <td class="text-nowrap">{{ $transaction->date_payment }}</td>
                             <td>{{ $transaction->dormitory->name }} (Kamar {{ $transaction->dormitory->rooms[0]->room_number }})</td>
-                            <td>{{ $transaction->total_bulan }}</td>
-                            <td>{{ $transaction->bulan_mulai }}</td>
-                            <td>{{ $transaction->bulan_selesai }}</td>
-                            <td><img width="300" src="{{ asset("storage/" . $transaction ->bukti_pembayaran) }}" alt=""></td>
-                            {{-- <td class="d-flex">
-                                <a href="{{ route($transactions_route["show"], $transaction->id) }}" class="btn btn-primary mr-2">Detail</a>
-                                <a href="{{ route($transactions_route["edit"], $transaction->id) }}" class="btn btn-warning mr-2">Edit</a>
-                                <form action="{{ route($transactions_route["delete"], $transaction->id) }}" class="d-inline" method="post">
-                                    @csrf
-                                    @method("delete")
-                                    <button onclick="return confirm('Konfirmasi')" class="btn btn-danger">Hapus</button>
-                                </form>
-                            </td> --}}
+                            <td>{{ $transaction->total_month }} Bulan</td>
+                            <td><span class="text-nowrap">{{ $transaction->from }}</span> <div>-</div> <span class="text-nowrap">{{ $transaction->to }}</span></td>
+                            {{-- <td><img width="300" src="{{ asset("storage/" . $transaction ->bukti_pembayaran) }}" alt=""></td> --}}
+                            <td class="d-table-cell middle">
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ route($transactions_route["show"], $transaction->id) }}" class="btn btn-primary mr-2">Detail</a>
+                                    <form action="{{ route($transactions_route["delete"], $transaction->id) }}" class="d-inline" method="post">
+                                        @csrf
+                                        @method("delete")
+                                        <button onclick="return confirm('Konfirmasi')" class="btn btn-danger">Hapus</button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

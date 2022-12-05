@@ -10,7 +10,7 @@
 			@csrf
 			<div class="mb-3">
 				<label for="fk_id_dormitory" class="form-label @error('fk_id_dormitory') is-invalid @enderror">Nama Penghuni Kos</label>
-				@if ($dormitories)
+				@if ($dormitories->count() > 0)
 					<select class="form-select" name="fk_id_dormitory" id="fk_id_dormitory" required>
 						@foreach ($dormitories as $dormitory)
 							@if (old("fk_id_dormitory") == $dormitory->id)
@@ -39,41 +39,30 @@
 				@enderror
 			</div>
 			<div class="mb-3">
-				<label for="image" class="form-label">Image</label>
+				<label for="image" class="form-label">Gambar Kamar</label>
 				<span>
 					<img class="img-preview img-fluid mb-3 p-0 border-1 border-primary d-none" id="image-preview" style="border: solid">
 				</span>
-				<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image[]" multiple accept="image/*">
+				<input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image[]" multiple accept="image/*" required>
 				@error('image')
 					<div class="invalid-feedback">
 						{{ $message }}
 					</div>
 				@enderror
 			</div>
-
-			{{-- <div class="mb-3">
-				<label for="preview_image" class="form-label">Gambar Kamar</label>
-				<input type="text" name="preview_image" class="form-control @error('preview_image') is-invalid @enderror" id="preview_image" value="{{ old("preview_image") }}" required>
-				@error('preview_image')
-					<div class="invalid-feedback">
-						{{ $message }}
-					</div>
-				@enderror
-			</div> --}}
 			<button type="submit" class="btn btn-primary">Tambah Data</button>
 		</form>
 	</div>
 	<script>
 		const inputImage = document.querySelector("#image");
 		const previewImage = document.querySelector("#image-preview.img-preview");
-		
-		inputImage.onchange = function(){
+
+		const displayInputImage = () => {	
 			previewImage.classList.remove("d-none")			
 			previewImage.style.display = "block";
 			previewImage.style.height = "350px";
 			previewImage.style.aspectRatio = "16/9";
 			previewImage.style.objectFit = "cover";
-
 			const oFReader = new FileReader();
 			oFReader.readAsDataURL(inputImage.files[0]);
 
@@ -81,5 +70,11 @@
 				previewImage.src = oFREvent.target.result;
 			}
 		}
+
+		if (inputImage.files[0] != null) {	
+			displayInputImage()
+		}
+
+		inputImage.addEventListener("change", displayInputImage) 
 	</script>
 @endsection

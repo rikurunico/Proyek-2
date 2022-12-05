@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('price_cost', function (Blueprint $table) {
+        Schema::create('kind_payment_logs', function (Blueprint $table) {
             $table->id();
-            $table->integer('price');
+            $table->string("name")->unique();
+            $table->boolean("need_image")->default(FALSE);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('price_cost');
+        Schema::dropIfExists('kind_payment_logs');
     }
 };

@@ -15,6 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('data_instances')->insert([
+            [ 
+                "name" => "Daarus Sa'adah",
+                "address" => "Jl. Semanggi Barat No.18, Lowokwaru, Malang",
+                "email" => "service@daarus-saadah.my.id",
+                "phone_number" => '6285157582290',
+                "price_room" => "550000"
+            ]
+        ]);
+
         DB::table('users')->insert([
             [ 
                 "username" => "test",
@@ -22,6 +32,19 @@ class DatabaseSeeder extends Seeder
                 "password" => Hash::make('test')
             ]
         ]);
+
+        DB::table('kind_payment_logs')->insert([
+            [ 
+                "name" => "Transfer",
+                "need_image" => TRUE,
+            ], 
+            [ 
+                "name" => "Cash",
+                "need_image" => FALSE
+            ], 
+        ]);
+
+        
 
         DB::table('dormitories')->insert([
             [ 
@@ -161,7 +184,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('room_images')->insert([
             [ 
-                "image" => "room-images/1.jpg",
+                "image" => "room-images/1.png",
                 "fk_id_room" => 1
             ],
             [ 

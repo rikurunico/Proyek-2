@@ -31,7 +31,7 @@
 			</div>
 
 			<div class="mb-3">
-				@if (count($room->roomimages) > 0)
+				@if ($room->roomimages->count() > 0)
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
@@ -53,7 +53,7 @@
 						</tbody>
 					</table>
 				@else
-					<div class="col-xl-8 p-0 mt-4">
+					<div class="col-12 p-0 mt-4">
 						<span class="form-control border-1 border-danger text-danger">Tidak ada gambar untuk kamar ini</span>
 					</div>
 				@endif
@@ -62,7 +62,7 @@
 			<div class="mb-3">
 				<label for="image" class="form-label">Gambar</label>
 				<input type="hidden" name="fk_id_room" value="{{ $room->id }}">
-				<input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" required>
+				<input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
 				@error('image')
 					<div class="invalid-feedback">
 						{{ $message }}

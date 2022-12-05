@@ -6,8 +6,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link rel="shortcut icon" href="{{ asset('/assets/img/favicon.ico') }}" type="image/x-icon">
 
-    <title>Daarus Sa'adah</title>
-    <meta name="description" content="Kos Daarus Sa'adah dekat kampus polinema">
+    <title>{{ $data->name }}</title>
+    <meta name="description" content="Kos {{ $data->name }} dekat kampus polinema">
     {{-- <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34="> --}}
     <meta name="robots" content="noindex,nofollow">
 
@@ -47,7 +47,7 @@
         <div class="container d-flex align-items-center justify-content-between">
 
         <div class="logo">
-            <h1><a href="index.html"><span>Daarus Sa'adah</span></a></h1>
+            <h1><a href="index.html"><span>{{ $data->name }}</span></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>
@@ -89,7 +89,7 @@
         <div class="row justify-content-between">
             <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
             <div data-aos="zoom-out">
-                <h1>Cari kos sambil rebahan dengan <span>Daarus Sa'adah</span></h1>
+                <h1>Cari kos sambil rebahan dengan <span>{{ $data->name }}</span></h1>
                 <h2>Cari kos jadi lebih mudah dan tidak perlu keliling kota</h2>
                 <div class="text-center text-lg-start">
                 <a href="#about" class="btn-get-started scrollto">Lihat lebih lanjut</a>
@@ -131,13 +131,13 @@
             </div>
 
             <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5" data-aos="fade-left">
-                <h3>Tentang Daarus Sa'adah</h3>
-                <p>Daarus Sa'adah adalah kos-kosan mahasiswa khusus laki-laki yang terletak pada jalan Semanggi Barat no.18 yang memiliki beberapa keunggulan, diantaranya</p>
+                <h3>Tentang {{ $data->name }}</h3>
+                <p>{{ $data->name }} adalah kos-kosan mahasiswa khusus laki-laki yang terletak pada jalan Semanggi Barat no.18 yang memiliki beberapa keunggulan, diantaranya</p>
 
                 <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon"><i class="bx bx-fingerprint"></i></div>
                 <h4 class="title"><a href="">Jarak ke kampus yang dekat</a></h4>
-                <p class="description">Kos Daarus Sa'adah memiliki lokasi yang dekat dengan kampus Politeknik Negeri Malang, kita hanya perlu berjalan kaki kurang lebih 5 menit</p>
+                <p class="description">Kos {{ $data->name }} memiliki lokasi yang dekat dengan kampus Politeknik Negeri Malang, kita hanya perlu berjalan kaki kurang lebih 5 menit</p>
                 </div>
 
                 <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
@@ -149,7 +149,7 @@
                 <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
                 <div class="icon"><i class="bx bx-atom"></i></div>
                 <h4 class="title"><a href="">Fasilitas kos yang lumayan lengkap</a></h4>
-                <p class="description">Daarus Sa'adah menyediakan fasilitas berupa meja, kursi, lemari dan juga kasur, termasuk gratis listrik, air dan parkir kendaraan yang aman</p>
+                <p class="description">{{ $data->name }} menyediakan fasilitas berupa meja, kursi, lemari dan juga kasur, termasuk gratis listrik, air dan parkir kendaraan yang aman</p>
                 </div>
 
             </div>
@@ -164,7 +164,7 @@
 
             <div class="section-title" data-aos="fade-up">
             <h2></h2>
-            <p>Fasilitas kos Daarus Sa'adah</p>
+            <p>Fasilitas kos {{ $data->name }}</p>
             </div>
 
             <div class="row" data-aos="fade-left">
@@ -262,7 +262,7 @@
 
             <div class="section-title" data-aos="fade-up">
                 <h2>Gambar Kos</h2>
-                <p>Preview kos Daarus Sa'adah</p>
+                <p>Preview kos {{ $data->name }}</p>
             </div>
 
             <div class="row g-0" data-aos="fade-left">
@@ -371,14 +371,14 @@
 
             <div class="section-title" data-aos="fade-up">
             <h2></h2>
-            <p>Harga kos Daarus Sa'adah</p>
+            <p>Harga kos {{ $data->name }}</p>
             </div>
 
             <div class="row" data-aos="fade-left">
                 <div class="col-lg-6 col-md-6">
                     <div class="box" data-aos="zoom-in" data-aos-delay="100">
                     <h3>Bulanan</h3>
-                    <h4><sup>Rp</sup>550.000<span> / bulan</span></h4>
+                    <h4><sup>Rp</sup>{{ $data->price_room_month }}<span> / bulan</span></h4>
                     {{-- <ul>
                         <li></li>
                         <li>Nec feugiat nisl</li>
@@ -395,7 +395,7 @@
                 <div class="col-lg-6 col-md-6 mt-4 mt-md-0">
                     <div class="box featured" data-aos="zoom-in" data-aos-delay="200">
                     <h3>Tahunan</h3>
-                    <h4><sup>Rp</sup>6.600.000<span> / tahun</span></h4>
+                    <h4><sup>Rp</sup>{{ $data->price_room_year }}<span> / tahun</span></h4>
                     {{-- <ul>
                         <li></li>
                         <li>Nec feugiat nisl</li>
@@ -429,21 +429,21 @@
                             <div class="address">
                                 <i class="bi bi-geo-alt"></i>
                                 <h4>Location:</h4>
-                                <p>Jl. Semanggi Barat No.18, Lowokwaru, Malang</p>
+                                <p>{{ $data->address }}</p>
                             </div>
                         </a>
-                        <a href="https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=service@daarus-saadah.my.id" target="_blank">
+                        <a href="https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to={{ $data->email }}" target="_blank">
                             <div class="email">
                                 <i class="bi bi-envelope"></i>
                                 <h4>Email:</h4>
-                                <p>service@daarus-saadah.my.id</p>
+                                <p>{{ $data->email }}</p>
                             </div>
                         </a>
-                        <a href="https://api.whatsapp.com/send?phone=6285157582290&text=Permisi%2C%20apakah%20ada%20kamar%20kos%20yang%20kosong%3F%0A" target="_blank">
+                        <a href="https://api.whatsapp.com/send?phone={{ $data->phone_number }}&text=Permisi%2C%20apakah%20ada%20kamar%20kos%20yang%20kosong%3F%0A" target="_blank">
                             <div class="phone">
                                 <i class="bi bi-phone"></i>
                                 <h4>Whatsapp:</h4>
-                                <p>+62 813-3498-3535</p>
+                                <p>+{{ $data->phone_number }}</p>
                             </div>
                         </a>
                     </div>
@@ -462,12 +462,12 @@
                 <div class="row justify-content-around">
                     <div class="col-lg-12 col-md-6">
                         <div class="footer-info">
-                            <h3>Daarus Sa'adah</h3>
+                            <h3>{{ $data->name }}</h3>
                             <p class="pb-3"><em>Cari kos jadi lebih mudah dan tidak perlu keliling kota</em></p>
                             <p>
-                                Jl. Semanggi Barat No.18<br>Lowokwaru ,Malang<br>
-                                <strong>Whatsapp:</strong>+62 813-3498-3535<br>
-                                <strong>Email:</strong> service@daarus-saadah.my.id<br>
+                                {{ $data->address }}<br>
+                                <strong>Whatsapp:</strong>+{{ $data->phone_number }}<br>
+                                <strong>Email:</strong> {{ $data->email }}<br>
                             </p>
                             <div class="social-links mt-3">
                                 <span >Copyright &copy; Bengak Kos 2022</span>
