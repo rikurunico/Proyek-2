@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataInstance;
 use App\Models\Dormitory;
 use App\Models\PaymentLog;
 use App\Models\Room;
@@ -14,6 +15,7 @@ class DashboardController extends Controller
     {
         return view("dashboard", [
             "title" => "Dashboard",
+            'data_instance' => DataInstance::get()->first(),
             'total_dormitories' => count(Dormitory::all()),
             'total_rooms' => count(Room::all()),
             'total_transactions' => count(PaymentLog::all()),

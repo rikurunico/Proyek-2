@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dormitory;
+use App\Models\KindPaymentLogs;
 use App\Models\PaymentLog;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,6 @@ class PaymentLogController extends Controller
         "store" => "transactions.store",
         "create" => "transactions.create",
         "show" => "transactions.show",
-        "edit" => "transactions.edit",
-        "update" => "transactions.update",
         "delete" => "transactions.destroy",
         "trashIndex" => "transactions.trash.index",
         "trashDetail" => "transactions.trash.detail",
@@ -26,7 +25,6 @@ class PaymentLogController extends Controller
         "index" => "dashboard.transaction.index",
         "create" => "dashboard.transaction.create",
         "detail" => "dashboard.transaction.detail",
-        "edit" => "dashboard.transaction.edit",
         "trashIndex" => "dashboard.transaction.trashIndex",
         "trashDetail" => "dashboard.transaction.trashDetail",
     ];
@@ -39,10 +37,16 @@ class PaymentLogController extends Controller
     {
         $transactions = PaymentLog::with('dormitory')->paginate(10);
         $months = config("app.month.language.indonesian");
+
         foreach ($transactions as $transaction) {
-            $transaction["bulan_mulai"] = $months[$transaction["bulan_mulai"]-1]["name"];
-            $transaction["bulan_selesai"] = $months[$transaction["bulan_selesai"]-1]["name"];
+            $date_from = $months[((int)date("m", strtotime($transaction->from)))-1]["name"] . " " .  date("Y", strtotime($transaction->from));
+            $date_to = $months[((int)date("m", strtotime($transaction->to)))-1]["name"] . " " .  date("Y", strtotime($transaction->to));
+            $date_payment = date("d", strtotime($transaction->created_at)) . " " . $months[((int)date("m", strtotime($transaction->created_at)))-1]["name"] . " " .  date("Y", strtotime($transaction->created_at));
+            $transaction["from"] = $date_from;
+            $transaction["to"] = $date_to;
+            $transaction["date_payment"] = $date_payment;
         }
+
         return view(PaymentLogController::TRANSACTION_VIEW["index"], [
             'title' => 'Data Transaksi',
             'transactions_route' => PaymentLogController::TRANSACTION_ROUTE,
@@ -63,11 +67,18 @@ class PaymentLogController extends Controller
                 unset($dormitories[$indexdormitory]);
             }
         }
+
+        // <div class="alert alert-info" role="alert">
+        //     A simple info alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        // </div>
+
         return view(PaymentLogController::TRANSACTION_VIEW["create"], [
             'title' => 'Tambah Transaksi',
             'transactions_route' => PaymentLogController::TRANSACTION_ROUTE,
             'dormitories_route' => DormitoryController::DORMITORY_ROUTE,
+            'kindpaymentlogs_route' => KindPaymentLogsController::KINDPAYMENT_ROUTE,
             'dormitories' => $dormitories,
+            'kindpaymentlogs' => KindPaymentLogs::all(),
             'transactions' => PaymentLog::all(),
             'month_length' => config("app.month.length"),
             'months' => config("app.month.language.indonesian"),
@@ -82,23 +93,44 @@ class PaymentLogController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'fk_id_dormitory' => 'required',
-            'month_start'   => 'required',
-            'month_end'   => 'required',
-            'proof_payment' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+        $needImage = KindPaymentLogs::where("id", $request->fk_id_kind_paymentlogs)->first()->need_image;
+        $rulesData = [
+            'total_month' => 'required|integer|min:1',
+            'month_from' => 'required',
+            'year_from' => 'required',
+            'month_to' => 'required',
+            'year_to' => 'required',
+            'fk_id_kind_paymentlogs' => 'required',
+            'fk_id_dormitory' => 'required'
+        ];      
+        
+        if ($needImage) {
+            $rulesData["proof_payment"] = "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048";
+        } 
 
-        $proof_payment = $request->file('proof_payment')->store('proof_payment', 'public');
+        $validatedData = $request->validate($rulesData);
 
+        $dataDormitory = Dormitory::where('id', $validatedData['fk_id_dormitory'])->first();
 
-        PaymentLog::create([
-            'dormitory_id' => $request->fk_id_dormitory,
-            'bulan_mulai' => $request->month_start,
-            'bulan_selesai' => $request->month_end,
-            'total_bulan' => $request->month_end - $request->month_start,
-            'bukti_pembayaran' => $proof_payment,
-        ]);
+        $day = date('d', strtotime($dataDormitory->checkin_date));
+
+        $validatedData["from"] = $validatedData["year_from"] . "-" . $validatedData["month_from"] . "-" . $day;
+        $validatedData["to"] = $validatedData["year_to"] . "-" . $validatedData["month_to"] . "-" . $day;
+        unset($validatedData["month_from"], $validatedData["year_from"], $validatedData["month_to"], $validatedData["year_to"]);
+
+        // return dd($validatedData);
+
+        // $tahun = date('Y'); 
+        // $bulan = date('m'); 
+        // $tanggal = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
+        // return $tanggal;
+
+        if ($needImage) {
+            $file = $request->file('proof_payment')->store('proof-payment', 'public');
+            $validatedData["proof_payment"] = $file;
+        }
+
+        PaymentLog::create($validatedData);
 
         return redirect()->route('transactions.index')->with('success', 'Payment Log created successfully');
     }
@@ -109,13 +141,12 @@ class PaymentLogController extends Controller
      * @param  \App\Models\PaymentLog  $paymentLog
      * @return \Illuminate\Http\Response
      */
-    public function show(PaymentLog $paymentLog)
+    public function show(PaymentLog $transaction)
     {
-        //
-        $paymentLogData = PaymentLog::find($paymentLog->id);
-        return view('paymentLog.show', [
-            'title' => 'Show Payment Log',
-            'paymentLogData' => $paymentLogData,
+        return view(PaymentLogController::TRANSACTION_VIEW["detail"], [
+            'title' => 'Detail Transaksi',
+            'transactions_route' => PaymentLogController::TRANSACTION_ROUTE,
+            'transaction' => $transaction,
         ]);
     }
 
@@ -128,11 +159,6 @@ class PaymentLogController extends Controller
     public function edit(PaymentLog $paymentLog)
     {
         //
-        $paymentLogData = PaymentLog::find($paymentLog->id);
-        return view('paymentLog.edit', [
-            'title' => 'Edit Payment Log',
-            'paymentLogData' => $paymentLogData,
-        ]);
     }
 
     /**
@@ -145,15 +171,6 @@ class PaymentLogController extends Controller
     public function update(Request $request, PaymentLog $paymentLog)
     {
         //
-        $this->validate($request, [
-            'payment_date' => 'required',
-            'status' => 'required',
-            'payment_month' => 'required',
-        ]);
-
-        PaymentLog::find($paymentLog->id)->update($request->all());
-
-        return redirect()->route('transactions.index')->with('success', 'Payment Log updated successfully');
     }
 
     /**

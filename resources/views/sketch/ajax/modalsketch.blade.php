@@ -73,7 +73,7 @@
     </div>
     <div class="modal-footer">
         @if ($room)
-            <button type="button" class="btn btn-primary">Lihat data lebih lengkap</button>
+            <a role="button" class="btn btn-success" href="https://api.whatsapp.com/send?phone={{ $data->phone_number }}&text=Permisi%2C%20apakah%20kamar%20nomer%20{{ $room->room_number }}%20tersedia%20%3F">Pesan Sekarang</a>
         @endif
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
     </div>

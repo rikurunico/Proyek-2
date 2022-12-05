@@ -15,6 +15,12 @@ class ParentDormitory extends Model
 
     protected $fillable = [
         'name',
-        'phone_number'
+        'phone_number',
+        'fk_id_dormitory'
     ];
+
+    public function dormitory()
+    {
+        return $this->belongsTo(Dormitory::class, "fk_id_dormitory");
+    }
 }

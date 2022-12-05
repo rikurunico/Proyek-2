@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('payment_logs', function (Blueprint $table) {
             $table->id();
-            //relation to dormitory
-            $table->foreignId('dormitory_id')->constrained('dormitories')->cascadeOnDelete();
-            $table->string('total_bulan');
-            $table->string('bulan_mulai');
-            $table->string('bulan_selesai');
-            $table->string('bukti_pembayaran');
+            $table->string('total_month');
+            $table->date('from');
+            $table->date('to');
+            $table->string('proof_payment')->nullable();
+            $table->unsignedBigInteger('fk_id_kind_paymentlogs')->nullable();
+            $table->foreign("fk_id_kind_paymentlogs")->references("id")->on("kind_payment_logs")->nullOnDelete();
+            $table->unsignedBigInteger('fk_id_dormitory')->nullable();
+            $table->foreign("fk_id_dormitory")->references("id")->on("dormitories")->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

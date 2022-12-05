@@ -9,6 +9,22 @@
 <link href="{{ asset("style/sb-admin-2.min.css") }}" rel="stylesheet">
 <link href="{{ asset("style/responsive.css") }}" rel="stylesheet">
 <style>
+    span.form-control{
+        height: auto !important;
+    }
+
+    input[type=number] { 
+        -moz-appearance: textfield;
+        appearance: textfield;
+        margin: 0; 
+    }
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+
     table td.middle, table.table tbody tr td{
         vertical-align: middle !important;
     }
@@ -20,12 +36,17 @@
         vertical-align: middle !important;
     }
 
+    .w-100{
+        width: 100% !important;
+    }
+
     @media only screen and (min-width: 992px) {
+        .w-lg-50{
+            width: 50% !important;
+        }
+
         .w-lg-auto{
             width: auto !important;
         }
     }
-</style>
-<style>
-
 </style>

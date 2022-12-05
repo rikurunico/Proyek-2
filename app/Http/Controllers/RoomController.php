@@ -173,18 +173,22 @@ class RoomController extends Controller
             $validatedData["fk_id_dormitory"] = null;
         }
 
-        $rulesDataImage = [
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ];
+        if ($request->file('image')) {
+            $rulesDataImage = [
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ];
+    
+            $validator = Validator::make($request->all(), $rulesDataImage);
+            $validatedDataImage = $validator->validated();
 
-        $validator = Validator::make($request->all(), $rulesDataImage);
-        $validatedDataImage = $validator->validated();
-        $file = $request->file('image')->store('room-images', 'public');
-
-        $validatedDataImage["image"] = $file;
-        $validatedDataImage["fk_id_room"] = $room->id;
+            $file = $request->file('image')->store('room-images', 'public');
+    
+            $validatedDataImage["image"] = $file;
+            $validatedDataImage["fk_id_room"] = $room->id;
+            RoomImage::create($validatedDataImage);
+        }
+        
         Room::where("id", $room->id)->update($validatedData);
-        RoomImage::create($validatedDataImage);
 
 
         return redirect()->route(RoomController::ROOM_ROUTE["index"])->with('success', 'Data Kamar berhasil diedit');

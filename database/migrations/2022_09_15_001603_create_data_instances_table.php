@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dormitories', function (Blueprint $table) {
+        Schema::create('data_instances', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('phone_number', 14);
-            $table->string("image")->nullable();
-            $table->date('checkin_date')->nullable();
-            $table->date('checkout_date')->nullable();
+            $table->string("name");
+            $table->string("address");
+            $table->string("email");
+            $table->string("phone_number");
+            $table->string("price_room");
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dormitories');
+        Schema::dropIfExists('data_instances');
     }
 };

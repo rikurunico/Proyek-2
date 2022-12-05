@@ -2,13 +2,13 @@
 
 @section('container')
     <h2 class="mb-3 fs-sm-3">Detail Kamar {{ $room->title }}</h2>
-    <div class="col-xl-8 p-0 mb-3 mb-sm-4">
-        <a class="btn btn-primary me-3 w-100 w-lg-auto mb-3 mb-lg-0" href="{{ route($rooms_route["index"]) }}">Kembali ke Data Tabel</a>
-        <a class="btn btn-warning me-3 w-100 w-lg-auto mb-3 mb-lg-0" href="{{ route($rooms_route["edit"], $room->id) }}">Edit Data</a>
+    <div class="col-xl-8 p-0 mb-3 mb-md-5">
+        <a class="btn btn-primary me-0 me-3 w-100 w-lg-auto mb-3 mb-lg-0" href="{{ route($rooms_route["index"]) }}">Kembali ke Data Tabel</a>
+        <a class="btn btn-warning me-0 me-3 w-100 w-lg-auto mb-3 mb-lg-0" href="{{ route($rooms_route["edit"], $room->id) }}">Edit Data</a>
         <form action="{{ route($rooms_route["delete"], $room->id) }}" class="d-inline w-100 w-lg-auto mb-3 mb-lg-0" method="post">
             @csrf
             @method("delete")
-            <button onclick="return confirm('Konfirmasi')" class="btn btn-danger w-100 w-lg-auto mb-sm-1">Hapus</button>
+            <button onclick="return confirm('Konfirmasi')" class="btn btn-danger w-100 w-lg-auto">Hapus</button>
         </form>
     </div>
     <div class="col-xl-8 mb-5 p-0">
@@ -47,7 +47,7 @@
                     </button>
                 </div>
             @else
-                <div class="col-xl-8 mb-3 p-0">
+                <div class="col-12 mb-3 p-0">
                     <span class="form-control border-1 border-danger text-danger">Tidak ada gambar untuk kamar ini</span>
                 </div>
             @endif
