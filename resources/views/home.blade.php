@@ -7,8 +7,8 @@
     <link rel="shortcut icon" href="{{ asset('/assets/img/favicon.ico') }}" type="image/x-icon">
 
     <title>{{ $data->name }}</title>
-    <meta name="description" content="Kos {{ $data->name }} dekat kampus polinema">
-    {{-- <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34="> --}}
+    <meta name="description" content="{{ $data->name }} adalah penyewaan kos yang berada di kawasan Politeknik Negeri Malang, Tepatnya di {{ $data->address }}">
+    <meta name="google-site-verification" content="SdaFHswtNOCt0eq2ujDoPIH_pl5PQSPA5fyzgX25W3U">
     <meta name="robots" content="noindex,nofollow">
 
 <!-- Google tag (gtag.js) -->
@@ -17,7 +17,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-EKQ9QXK24V');
     </script>
 
